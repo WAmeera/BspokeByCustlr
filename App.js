@@ -11,13 +11,11 @@ import {
     Divider,
     StatusBar
 } from 'react-native';
-/*import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { AppLoading, Asset, Font, Icon } from 'expo';*/
-/*import AppNavigator from './navigation/AppNavigator';*/
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
-/***************************class shoppingbag*************************************/
+/***************************class ShoppingBag*************************************/
 class ShoppingBag extends React.Component {
+    //default constructor for class ShoppingBag
     constructor (){
       super()
       this.state = {
@@ -25,7 +23,9 @@ class ShoppingBag extends React.Component {
         isLoading: true
       }
     }
-
+	//function renderItem - will show the informations fetched from the database to the user-end (the shopping bag list)
+	//function renderSeperator - will show a line, in this class it is used to seperate each items on the list
+	//function componentDidMount - fetch data and information from the database - current url used is a dummy data created using an online json generator
     renderItem = ({item}) => {
       return(
         <View style ={{flex: 1, flexDirection: 'row', marginBottom: 3}}>
@@ -75,7 +75,7 @@ class ShoppingBag extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({
-          dataSource: responseJson.dummy_data,
+          dataSource: responseJson.dummy_data, //dummy data is the name of the data source
           isLoading: false
         })
       })
@@ -83,12 +83,18 @@ class ShoppingBag extends React.Component {
         console.log(error)
       })
     }
+
+    //main function for the class ShoppingBag; function componentDidMount, renderItem, and renderSeperator is called in this function as well
+    //ActivityIndicator animates the "loading" in the ShoppingBag page
+    //keyExtractor is a variable that will be used once the real database is implemented (i forgot to put a unique index in the dummy data)
+    //if you encounter a warning of "missing keys of items" that was because the keyExtractor stated above, ignore it for the time being
+    //line 119 - 127 : buttons and its styling for the button used to navigate from this ShoppingBag page to the payment page
     render () {
       return (
         this.state.isLoading
         ?
         <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-          <ActivityIndicator size="large" color="#330066" animating/>
+          <ActivityIndicator size="large" color="#330066" animating/> 
         </View>
         :
         <View style = {{flex: 1, alignContent: 'center'}}>
@@ -100,7 +106,7 @@ class ShoppingBag extends React.Component {
           />
           <View style={{ backgroundColor: '#AAAAAA'}}>
             <Text></Text>
-            <Text style  = {{fontSize: 14, color: '#FFFF'}}>  Sub-total (1 item) : </Text>
+            <Text style  = {{fontSize: 14, color: '#FFFF'}}>  Sub-total (3 item) : </Text>
             <Text></Text>
             <Text style  = {{fontSize: 14, color: '#FFFF'}}>  Est. Shipping </Text>
             <Text></Text>
@@ -123,19 +129,22 @@ class ShoppingBag extends React.Component {
     );
   }
 }      
-
 /*****************************end of class shoppingbag********************************/
 
-/*********************************class wishlist*************************************/
+//*******************************class wishlist*************************************///
+
 class Wishlist extends React.Component {
+    //default constructor for class wishlist
     constructor (){
       super()
       this.state = {
         dataSource : [],
         isLoading: true
       }
-    }
-
+    } 
+    //function renderItem - will show the informations fetched from the database to the user-end (the wishlist list)
+	//function renderSeperator - will show a line, in this class it is used to seperate each items on the list
+	//function componentDidMount - fetch data and information from the database - current url used is a dummydata created using an online json generator
     renderItem = ({item}) => {
       return(
         <View style ={{flex: 1, flexDirection: 'row', marginBottom: 3}}>
@@ -182,7 +191,7 @@ class Wishlist extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({
-          dataSource: responseJson.dummy_data,
+          dataSource: responseJson.dummy_data, //dummy data is the name of the data source
           isLoading: false
         })
       })
@@ -190,6 +199,13 @@ class Wishlist extends React.Component {
         console.log(error)
       })
     }
+    
+
+    //main function for the class Wishlist; function componentDidMount, renderItem, and renderSeperator is called in this function as well
+    //ActivityIndicator animates the "loading" in the Wishlist page
+    //keyExtractor is a variable that will be used once the real database is implemented (i forgot to put a unique index in the dummy data)
+    //if you encounter a warning of "missing keys of items" that was because the keyExtractor stated above, ignore it for the time being
+    //line 223 - 229 : buttons and its styling for the button used to navigate from this wishlist page to the ShoppingBag page
     render () {
       return (
         this.state.isLoading
@@ -203,7 +219,7 @@ class Wishlist extends React.Component {
             data = {this.state.dataSource}
             renderItem = {this.renderItem}
             /*keyExtractor = {name,index} => index]*/
-            /*ItemSeperatorComponent = {this.renderSeperator}*/
+            ItemSeperatorComponent = {this.renderSeperator}
           />
           <View style={{ backgroundColor: 'black'}}>
                 <Text></Text>

@@ -1,44 +1,43 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator, createAppContainer, StackActions, NavigationActions } from 'react-navigation';
-import t from 'tcomb-form-native';
 
-const RootStack = createStackNavigator({
-  Home:{screen: App},
-  // SizeList:{screen: Size},
-});
 
-const AppContainer = createAppContainer(RootStack);
-//buttons to choose measurement type
-class App extends React.Component {
+//buttons to choose size option
+export default class Size extends React.Compenent {
   render() {
     return (
-      <View style={ {flex:1, flexDirection:'column', justifyContent:'space-evenly' , alignItems:'center',} }>
+      <View style={ {flex:1,flexDirection:'column', justifyContent:'space-evenly', alignItems:'center',} }>
         <Button onPress={() => {
           //put function here
-        }}
-          title="Choose Size">
+          }}
+          title="S">
         >
         </Button>
 
         <Button onPress={() => {
           //put function here
           }}
-          title="Custom Measurement">
+          title="M">
         >
         </Button> 
  
         <Button onPress={() => {
           //put function here
           }}
-          title="Tailor Me">
+          title="L">
+        >
+        </Button> 
+
+        </Button> 
+ 
+        <Button onPress={() => {
+          //put function here
+          }}
+          title="XL">
         >
         </Button> 
       </View>
     );
   }
 }
-
-export default createAppContainer;
-//export default App;
-

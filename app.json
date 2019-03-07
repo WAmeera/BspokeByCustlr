@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Bspoke by Custlr",
-    "slug": "BspokeV2",
+    "name": "Bespoke",
+    "slug": "bespoke",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [

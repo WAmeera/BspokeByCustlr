@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\components",
+    "\\constants",
     "\\screens"
   ],
-  "SelectedNode": "\\App.js",
+  "SelectedNode": "\\screens\\home.js",
   "PreviewInSolutionExplorer": false
 }

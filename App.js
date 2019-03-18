@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image,ScrollView,View, Text, Button, StyleSheet } from 'react-native';
-import { createAppContainer, createStackNavigator, StackActions, NavigationActions,createDrawerNavigator } from 'react-navigation'; // Version can be specified in package.json
+import { createAppContainer, createStackNavigator, StackActions, NavigationActions,createDrawerNavigator, createSwitchNavigator } from 'react-navigation'; // Version can be specified in package.json
 import Items from './components/items';
 import HomeScreen from './screens/home';
 import DetailsScreen from './screens/details';
@@ -14,7 +14,7 @@ import Options from './screens/options';
 import Size from './screens/size';
 import Custom from './screens/custom';
 import Login from './screens/login';
-import Register from './screens/register';
+import Register from './screens/regis';
 import MenuDrawer from './components/MenuDrawer';
 import * as firebase from 'firebase';
 import AddressModal from './screens/AddressModal'
@@ -86,9 +86,22 @@ const DrawerNavigator = createDrawerNavigator(
 DrawerConfig,
 );
 
-
+const RegisterNavigator = createSwitchNavigator({  
+  Register: {
+    screen: Register,
+	},
+	Login: {
+		screen:Login,
+	},
+  },);
 
 const AppNavigator = createStackNavigator({   //control everything
+Register: {
+    screen: Register,
+	},
+ RegisterNavigator: {
+    screen: RegisterNavigator,
+  },
   DrawerNavigator: {
     screen: DrawerNavigator,
   },

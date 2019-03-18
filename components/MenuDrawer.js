@@ -25,6 +25,21 @@ state = { currentUser: null }
     this.setState({ currentUser })
 }
 
+signOutUser = () => {
+     firebase
+      .auth()
+      .signOut()
+      .then(() => this.props.navigation.navigate('Login'))
+}
+
+Signoutbutton (text){
+		return(
+			<TouchableOpacity style={{flex:1}} onPress={()=>this.signOutUser()}>
+				<Text style={styles.link}>{text}</Text>
+			</TouchableOpacity>
+		)
+	}	
+
 	navLink (nav,text){
 		return(
 			<TouchableOpacity style={{flex:1}} onPress={()=>this.props.navigation.navigate(nav)}>
@@ -42,6 +57,7 @@ state = { currentUser: null }
 				</View>
 				<View style={styles.bottomLinks}>
 					{this.navLink('Modalstack','Change Address')}
+					{this.Signoutbutton('Sign out')}
 				</View>
 			</View>
 		)

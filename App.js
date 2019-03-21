@@ -18,7 +18,7 @@ import Register from './screens/regis';
 import MenuDrawer from './components/MenuDrawer';
 import * as firebase from 'firebase';
 import AddressModal from './screens/AddressModal'
-
+//connect to database
 var config = {
     apiKey: "AIzaSyB5abld-pkUYqwM8SCSzzqjRO171JPsLDU",
     authDomain: "bespoke-efeb7.firebaseapp.com",
@@ -29,6 +29,31 @@ var config = {
   };
 
   firebase.initializeApp(config);
+  
+  console.log(firebase); //to check whether u've successfully connected to database or not (comment this code out if unused)
+  
+  //insert catalogue items into database (comment this part out if unused)
+  /*firebase.database().ref('items/0016').set(
+    {
+      name: 'Pin-Point Oxford T-shirt',
+      brand: 'Custlr',
+      category: 'Regular Fit',
+      Details: 'A distinctive fine look and feel for your everyday outdoor wear.',
+      Materials: '85% Cotton - 15% Polyester',
+      Availability: 'Currently Available',
+      QuantityAvailable: 7,
+      Price: 79.90,
+      Size: 'M',
+      Status: 'New Arrival',
+      Photo1: '',   
+      Photo2: '',
+      Photo3: '',
+    }
+  ).then(() => {
+    console.log('INSERTED !');
+  }).catch((error) => {
+    console.log(error);
+  });*/
 
 class CatalogueScreen extends React.Component {
     static navigationOptions = {

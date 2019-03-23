@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button,Text,View, Image, StyleSheet,} from 'react-native';
-import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 
 export default class Items extends React.Component {
 
@@ -30,20 +29,20 @@ export default class Items extends React.Component {
 const styles = StyleSheet.create({
        menuItem: {
 
-          
+            borderColor:'#E8E3E3',
+            // borderColor: '#000',
              borderWidth: 1,
              alignItems:'center',
-             margin: 10,
-             width: '45%',
-             height:350,
+             margin: 20,
+
 
 
 
          },
 
          image: {
-            width:100,
-            height:250,
+            width:180,
+            height:300,
 
          },
 

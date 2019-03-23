@@ -24,7 +24,7 @@ export default class HomeScreen extends React.Component {
         <MenuButton navigation={this.props.navigation}/>
 
         
-      <TouchableOpacity activeOpacity={1} onPress={() => navigate('Catalogue')} style={styles.btn}>
+      <TouchableOpacity activeOpacity={1} onPress={() => navigate('Muscle')} style={styles.btn}>
         <View style={styles.absoluteView}>
             
         </View>
@@ -39,7 +39,7 @@ export default class HomeScreen extends React.Component {
        <View style ={styles.buttonContainer}>
       
    
-      <TouchableOpacity activeOpacity={1} onPress={() => navigate('Catalogue')} style={styles.btn}>
+      <TouchableOpacity activeOpacity={1} onPress={() => navigate('Slim')} style={styles.btn}>
         <View style={styles.absoluteView}>
             
         </View>
@@ -52,7 +52,7 @@ export default class HomeScreen extends React.Component {
 
        <View style ={styles.buttonContainer}>
                  
-      <TouchableOpacity  activeOpacity={1}  onPress={() => navigate('Catalogue')} style={styles.btn}>
+      <TouchableOpacity  activeOpacity={1}  onPress={() => navigate('Regular')} style={styles.btn}>
         
         <Image source={require('./regular.jpg')}  style={styles.img}/>
       </TouchableOpacity>

@@ -12,7 +12,16 @@ import Payment3 from './screens/payment3';
 import Intro from './screens/intro';
 import Options from './screens/options';
 import Size from './screens/size';
-import Custom from './screens/custom';
+import Custom from './screens/custom';  
+import MuscleFit from './muscle';
+import RegularFit from './normal';
+import SlimFit from './slim';
+import Tailor from './screens/TailorScreen';
+import TailorOptions from './screens/TailorOptions';
+import Tailor1 from './screens/Tailor1';
+import Tailor2 from './screens/Tailor2';
+import Tailor3 from './screens/Tailor3';
+import Tailor4 from './screens/Tailor4';
 import Login from './screens/login';
 import Register from './screens/regis';
 import MenuDrawer from './components/MenuDrawer';
@@ -55,34 +64,7 @@ var config = {
     console.log(error);
   });*/
 
-class CatalogueScreen extends React.Component {
-    static navigationOptions = {
-      title: 'Catalogue       ',
 
-  };
-
-  render() {
-       const {navigate} = this.props.navigation;
-    return (
-    <View style={styles.container}>
-       
-
-        <ScrollView style={styles.menuContainer}>
-
-            <Items itemImage={require('./images/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./images/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./images/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./images/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./images/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./images/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./images/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-
-
-        </ScrollView>
-    </View>
-    );
-  }
-}
 
 const DrawerConfig = {
 
@@ -136,9 +118,6 @@ Register: {
   Details: {
     screen: DetailsScreen,
   }, 
-  Catalogue:{
-    screen: CatalogueScreen,
-  },
   ShoppingBag:{
     screen: ShoppingBag,
   },
@@ -172,9 +151,38 @@ Register: {
     Register:{
     screen: Register,
   },
+    Muscle:{
+    screen: MuscleFit,
+  },
+    Regular:{
+    screen: RegularFit,
+  },
+    Slim:{
+    screen: SlimFit,
+  },
+      Tailor:{
+    screen: Tailor,
+  },
+      TailorOptions:{
+    screen: TailorOptions,
+  },
+        Tailor1:{
+    screen: Tailor1,
+  },
+      Tailor2:{
+    screen: Tailor2,
+  },
+        Tailor3:{
+    screen: Tailor3,
+  },
+        Tailor4:{
+    screen: Tailor4,
+  },
+  
+  
 }, 
 {
-    initialRouteName: 'Intro',
+    initialRouteName: 'Details',
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#003061',

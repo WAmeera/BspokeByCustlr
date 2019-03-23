@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Button, Text, View, Image} from 'react-native';
 import {createStackNavigator, createAppContainer} from "react-navigation";
-import ImageSlider from 'react-native-image-slider';
+import Slideshow from 'react-native-slideshow';
 
 
 export default class DetailsScreen extends React.Component{
@@ -14,9 +14,7 @@ export default class DetailsScreen extends React.Component{
 
     return(
       <View style={styles.container}>
-        <View style={styles.top}>
-             <Text style={styles.header}> Oxford Long Sleeve(White) </Text>
-        </View>
+
 
         <View style={styles.menuContainer}>
 
@@ -29,11 +27,12 @@ export default class DetailsScreen extends React.Component{
  
 
                     
-                    <ImageSlider images={[
-                      './shirt.jpg',
-                      './shirt.jpg',
-                      './shirt.jpg'
-                    ]}/>
+                    <Slideshow 
+                         dataSource={[
+                                { url:'http://placeimg.com/640/480/any' },
+                                { url:'http://placeimg.com/640/480/any' },
+                                { url:'http://placeimg.com/640/480/any' }
+                     ]}/>
 
                       <View style={styles.infoContainer}>
 

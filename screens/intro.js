@@ -101,7 +101,11 @@ export default class Intro extends Component {
           {barArray}
 
           <View style={styles.button}>
-            <Button title="SKIP" onPress={() => this.props.navigation.navigate('Login')} />
+            <TouchableOpacity title="SKIP" onPress={() => this.props.navigation.navigate('Login')} >
+
+                 <Image source={require('./skip.png')}  style={styles.img}/>
+
+            </TouchableOpacity>
           </View>
         </View>
         
@@ -148,10 +152,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0)',
   },
   button: {
-
+    height: 100,
+    width: 100,
     position: 'absolute',
-    left: 50,
-    right: 50,
-    bottom: 25,
+    left: 90,
+
+    top: 100,
+  },
+
+  img:{
+    height: 50,
+    width: 60,
   }
 })

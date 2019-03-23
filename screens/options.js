@@ -51,7 +51,7 @@ export default class HomeScreen extends React.Component {
 
        <View style ={styles.buttonContainer}>
                  
-      <TouchableOpacity  activeOpacity={1}  style={styles.btn}>
+      <TouchableOpacity  onPress={() => navigate('TailorOptions')} activeOpacity={1}  style={styles.btn}>
         
         <Image source={require('./size3.jpg')}  style={styles.img}/>
       </TouchableOpacity>

@@ -3,6 +3,7 @@ import {TouchableOpacity, Image, ScrollView,Button, Linking, View, StyleSheet } 
 import { Constants, WebBrowser } from 'expo';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import Communications from 'react-native-communications';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
              borderWidth: 1,
              alignItems:'center',
              margin: 20,
+             height:hp('60%'),
 
 
          },
@@ -83,13 +85,14 @@ const styles = StyleSheet.create({
 
 
          image: {
-            width:180,
-            height:300,
+            margin:15,
+            width:wp('50%'),
+            height:hp('40%'),
 
          },
 
            buttonContainer: {
-             width:'90%',
+             width:wp('90%'),
              justifyContent: 'center',
              margin: 30,
 

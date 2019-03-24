@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Text,TouchableOpacity, Image, ScrollView,Button, Linking, View, StyleSheet } from 'react-native';
 import { Constants, WebBrowser } from 'expo';
-
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default class TailorOptions extends React.Component {
 
@@ -101,14 +101,14 @@ export default class TailorOptions extends React.Component {
 
         <TouchableOpacity activeOpacity={1} onPress={()=>{this.calculateDis(this.state.latitude, this.state.longitude)}} style={styles.buttonContainer}>
             
-            <Image source={require('./nearest.png')}  style={styles.img}/>
+            <Image source={require('./image/nearest.png')}  style={styles.img}/>
 
         </TouchableOpacity>
 
 
         <TouchableOpacity activeOpacity={1}  onPress={() => navigate('Tailor')} style={styles.buttonContainer}>
 
-            <Image source={require('./tailorlist.png')}  style={styles.img}/>
+            <Image source={require('./image/tailorlist.png')}  style={styles.img}/>
 
 
         </TouchableOpacity>
@@ -131,8 +131,8 @@ export default class TailorOptions extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width:'100%',
-    height:'100%',
+    width:wp('100%'),
+    height:hp('100%'),
 
   },
 
@@ -140,8 +140,8 @@ const styles = StyleSheet.create({
 
 
   buttonContainer: {
-    width:'100%',
-    height: '50%',
+    width:wp('100%'),
+    height:hp('50%'),
     justifyContent: 'center',
 
 

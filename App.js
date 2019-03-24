@@ -182,7 +182,7 @@ Register: {
   
 }, 
 {
-    initialRouteName: 'Intro',
+    initialRouteName: 'Details',
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#003061',
@@ -198,25 +198,6 @@ Register: {
 
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width:'100%',
-    height:'100%',
 
-  },
-
-
-
-
-  menuContainer: {
-
-        width:'100%',
-        height:'100%',
-  },
-
-
-
-});
 
 export default createAppContainer(AppNavigator);    //call the class

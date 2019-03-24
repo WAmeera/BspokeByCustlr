@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image,ScrollView,View, Text, Button, StyleSheet } from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
-//import items from './components/items';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 
@@ -41,14 +41,14 @@ export default class CatalogueScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width:'100%',
-    height:'100%',
+    width:wp('100%'),
+    height:hp('100%'),
 
   },
 
   top: {
        backgroundColor: '#8E8E8E',
-       width:'100%',
+       width:wp('100%'),
        alignItems: 'center',
 
   },
@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
 
   menuContainer: {
 
-        width:'100%',
-        height:'100%',
+        width:wp('100%'),
+        height:hp('100%)',
   },
 
 

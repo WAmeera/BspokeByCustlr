@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Button, Text, View, Image,Switch} from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 
@@ -101,13 +102,13 @@ const s = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    width:'100%',
-    height:'100%',
+    width:wp('100%'),
+    height:hp('100%'),
 
   },
   creditContainer:{
 
-    width: '100%',
+     width:wp('100%'),
     margin: 30,
     //height:'50%',
   },
@@ -129,7 +130,7 @@ const s = StyleSheet.create({
 
   top: {
        backgroundColor: '#8E8E8E',
-       width:'100%',
+       width:wp('100%'),
        alignItems: 'center',
 
   },
@@ -169,8 +170,8 @@ const s = StyleSheet.create({
        infoContainer: {
             
 
-        width:'80%',
-        height:'100%',
+        width:wp('80%'),
+        height:hp('100%'),
 
 
   },

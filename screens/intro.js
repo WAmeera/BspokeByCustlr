@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { TouchableOpacity ,Text, Button, Animated, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native'
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const screenWidth = Dimensions.get('window').width
 const FIXED_BAR_WIDTH = 280
@@ -101,7 +102,11 @@ export default class Intro extends Component {
           {barArray}
 
           <View style={styles.button}>
-            <Button title="SKIP" onPress={() => this.props.navigation.navigate('Login')} />
+            <TouchableOpacity title="SKIP" onPress={() => this.props.navigation.navigate('Login')} >
+
+                 <Image source={require('./image/skip.png')}  style={styles.img}/>
+
+            </TouchableOpacity>
           </View>
         </View>
         
@@ -125,7 +130,7 @@ const styles = StyleSheet.create({
     bottom: 30,
     flexDirection: 'row',
     alignItems: 'center',
-    height:'20%',
+    height:hp('20%'),
 
   },
   track: {
@@ -148,10 +153,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0)',
   },
   button: {
-
+    height: 100,
+    width: 100,
     position: 'absolute',
-    left: 50,
-    right: 50,
-    bottom: 25,
+    left: 90,
+
+    top: 100,
+  },
+
+  img:{
+    height: 50,
+    width: 60,
   }
 })

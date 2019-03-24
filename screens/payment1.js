@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Button, Text, View, Image} from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import t from 'tcomb-form-native'; // 0.6.9
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const Form = t.form.Form;
 
@@ -33,10 +34,13 @@ export default class Payment1 extends React.Component {
 
             <View style={styles.title}>
               <Text style={styles.mainTitle}> SHIPPING INFO </Text>
-
+               <Image 
+              source={require('./image/shipping.png')}
+              style={styles.image}
+              />
             </View> 
 
-
+           
 
             <Form type={User}
             ref={c => this._form = c}  />
@@ -64,17 +68,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    width:'100%',
-    height:'100%',
+    width:wp('100%'),
+    height:hp('100%'),
 
   },
 
-  top: {
-       backgroundColor: '#8E8E8E',
-       width:'100%',
-       alignItems: 'center',
 
-  },
     header: {
       fontSize: 30,
       color: '#ffffff',
@@ -84,23 +83,23 @@ const styles = StyleSheet.create({
      infoContainer: {
             
 
-        width:'80%',
-        height:'100%',
+        width:wp('80%'),
+        height:hp('100%'),
 
 
   },
 
   image: {
-          margin:20,
-          width:32,
-          height:50,
-
+          width:wp('20%'),
+          height:hp('8%'),
+          
          },
 
   title: {
     alignItems:'center',
-   
-    margin: 50
+   width:wp('40%'),
+   paddingRight:13.5,
+    margin: 80,
   },
 
   mainTitle:{
@@ -117,7 +116,7 @@ const styles = StyleSheet.create({
   buttonContainer:{
 
     alignItems:'center',
-    margin:100
+    margin:50
     
   }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { TouchableOpacity,Image,ScrollView,View, Text, Button, StyleSheet } from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import MenuButton from '../components/MenuButton.js';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 
@@ -28,7 +29,7 @@ export default class HomeScreen extends React.Component {
         <View style={styles.absoluteView}>
             
         </View>
-        <Image source={require('./muscle.jpg')}  style={styles.img}/>
+        <Image source={require('./image/muscle.jpg')}  style={styles.img}/>
       </TouchableOpacity>
 
 
@@ -43,7 +44,7 @@ export default class HomeScreen extends React.Component {
         <View style={styles.absoluteView}>
             
         </View>
-        <Image source={require('./slim.jpg')}  style={styles.img}/>
+        <Image source={require('./image/slim.jpg')}  style={styles.img}/>
       </TouchableOpacity>
 
 
@@ -54,7 +55,7 @@ export default class HomeScreen extends React.Component {
                  
       <TouchableOpacity  activeOpacity={1}  onPress={() => navigate('Regular')} style={styles.btn}>
         
-        <Image source={require('./regular.jpg')}  style={styles.img}/>
+        <Image source={require('./image/regular.jpg')}  style={styles.img}/>
       </TouchableOpacity>
 
               </View>
@@ -79,16 +80,16 @@ const styles = StyleSheet.create({
 
   container1: {
     flex: 1,
-    width:'100%',
-    height:'100%',
+    width:wp('100%'),
+    height:hp('100%'),
     alignItems: 'center',
     justifyContent: 'center'
   },
 
 
   buttonContainer: {
-    width:'100%',
-    height: '33.333%',
+    width:wp('100%'),
+    height:hp('33.333%'),
     justifyContent: 'center',
 
 

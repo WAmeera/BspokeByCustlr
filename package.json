@@ -17,18 +17,26 @@
     "native-base": "^2.12.1",
     "prop-types": "^15.7.2",
     "react": "16.5.0",
+    "react-image-gallery": "^0.8.14",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-communications": "^2.2.1",
     "react-native-credit-card-input": "^0.4.1",
     "react-native-image-slider": "^2.0.3",
+    "react-native-image-slider-show": "^1.0.3",
     "react-native-image-slideshow": "^1.0.1",
+    "react-native-image-swiper": "0.0.8",
+    "react-native-responsive-screen": "^1.2.1",
     "react-native-slideshow": "^1.0.1",
     "react-navigation": "^3.0.9",
+    "react-simple-image-slider": "^1.0.2",
+    "react-slidin": "^1.0.4",
+    "react-smart-slider": "0.0.9",
     "tcomb-form-native": "^0.6.20"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
-    "jest-expo": "^32.0.0"
+    "jest-expo": "^32.0.0",
+    "react-alice-carousel": "^1.13.3"
   },
   "private": true
 }

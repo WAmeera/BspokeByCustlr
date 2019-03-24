@@ -3,6 +3,7 @@ import {StyleSheet, Button, Text, View, Image,Switch} from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import t from 'tcomb-form-native'; // 0.6.9
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 
@@ -35,10 +36,16 @@ export default class Payment3 extends React.Component {
          <View style={styles.infoContainer}>
 
             <View style={styles.title}>
-
+              
               <View style={styles.payment}>
-          <Text style={styles.mainTitle}> PAYMENT COMPLETED </Text>
-        </View>
+
+                <Text style={styles.mainTitle}> PAYMENT COMPLETED </Text>
+                  <Image 
+                    source={require('./image/check.png')}
+                    style={styles.image}
+                    />
+                </View>
+
 
                 
 
@@ -52,7 +59,7 @@ export default class Payment3 extends React.Component {
 
             <View style={styles.buttonContainer}>
               <View style={styles.button}>
-                <Button title="Next"
+                <Button title="Home"
                 color="grey"
                 onPress={this.handleSubmit}
               
@@ -73,14 +80,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    width:'100%',
-    height:'100%',
+    width:wp('100%'),
+    height:hp('100%'),
 
   },
 
   top: {
        backgroundColor: '#8E8E8E',
-       width:'100%',
+       width:wp('100%'),
        alignItems: 'center',
 
   },
@@ -93,15 +100,16 @@ const styles = StyleSheet.create({
      infoContainer: {
             
 
-        width:'80%',
-        height:'100%',
+        width:wp('80%'),
+        height:hp('100%'),
 
 
   },
 
   payment:{
     margin:20,
-    width:'100%'
+    alignItems:'center',
+    width:wp('100%'),
   },
 
   image: {
@@ -113,7 +121,8 @@ const styles = StyleSheet.create({
 
   title: {
     alignItems:'center',
-    margin: 50,
+    margin: 40,
+
   },
 
   mainTitle:{
@@ -130,7 +139,7 @@ const styles = StyleSheet.create({
   buttonContainer:{
 
     alignItems:'center',
-    margin:100
+    margin:70
     
   }
 

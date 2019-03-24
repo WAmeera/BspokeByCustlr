@@ -1,26 +1,24 @@
 import React from 'react';
-import {Button,Text,View, Image, StyleSheet,} from 'react-native';
+import {TouchableOpacity,Button,Text,View, Image, StyleSheet,} from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default class Items extends React.Component {
 
     render(){
         return(
             <View style = {styles.menuItem}>
-                <Image
-                    source={this.props.itemImage}
-                    style={styles.image} />
-                    <Text> {this.props.item}</Text>
-                    <View style={styles.buttonContainer}>
-                    <Button
-                              title="More Details "
-                              color="#6E9C8A"
-                              onPress={() => this.props.navigation.navigate('Details')}
 
-                            />
-                     </View>
+
+
+
+                <View style = {styles.menuItem}>
+                    <TouchableOpacity activeOpacity={1} style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Details')} >
+                        <Image  source={this.props.itemImage}  style={styles.image}/>           
+                    </TouchableOpacity>
+                </View>
+           
             </View>
-
 
         );
     }
@@ -30,20 +28,21 @@ export default class Items extends React.Component {
 const styles = StyleSheet.create({
        menuItem: {
 
-            borderColor:'#E8E3E3',
-            // borderColor: '#000',
+            backgroundColor:'#fff',
+            borderColor:'#dddddd',
              borderWidth: 1,
              alignItems:'center',
-             margin: 20,
-
+             margin: 5,
+             width: wp('47.5%'),
+             height:hp('40%'),
 
 
 
          },
 
          image: {
-            width:180,
-            height:300,
+            width:wp('43%'),
+            height:hp('39%'),
 
          },
 

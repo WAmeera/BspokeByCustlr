@@ -182,7 +182,7 @@ Register: {
   
 }, 
 {
-    initialRouteName: 'Regular',
+    initialRouteName: 'Intro',
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#003061',

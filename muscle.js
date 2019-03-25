@@ -19,18 +19,14 @@ export default class MuscleFit extends React.Component {
        
       <ScrollView style={styles.scroll}>
         <View style={styles.menuContainer}>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test2" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test3" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test4" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test5" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test6" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-    
-            
+            <Items itemImage={require('./screens/image/shirt.jpg')} text1="test1" text2="test2" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} text1="test1" text2="test2" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} text1="test1" text2="test2" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} text1="test1" text2="test2" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} text1="test1" text2="test2" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} text1="test1" text2="test2" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} text1="test1" text2="test2" navigation={this.props.navigation}/>
+
         </View>
       </ScrollView>
     </View>

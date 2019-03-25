@@ -6,7 +6,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 
 
-export default class RegulareFit extends React.Component {
+export default class SlimFit extends React.Component {
     static navigationOptions = {
       title: 'SlimFit       ',
 
@@ -20,9 +20,9 @@ export default class RegulareFit extends React.Component {
       <ScrollView style={styles.scroll}>
         <View style={styles.menuContainer}>
             <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} item="test43" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} item="test12" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} item="test11" navigation={this.props.navigation}/>
             <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
             <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
             <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>

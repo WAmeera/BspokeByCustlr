@@ -14,7 +14,8 @@ export default class Items extends React.Component {
 
                 <View style = {styles.menuItem}>
                     <TouchableOpacity activeOpacity={1} style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Details')} >
-                        <Image  source={this.props.itemImage}  style={styles.image}/>           
+                        <Image source={this.props.itemImage}  style={styles.image}/>         
+                        <Text style={styles.text}>{this.props.item}</Text>  
                     </TouchableOpacity>
                 </View>
            
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
              borderWidth: 1,
              alignItems:'center',
              margin: 5,
-             width: wp('47.5%'),
+             width: wp('46%'),
              height:hp('40%'),
 
 
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
 
          image: {
             width:wp('43%'),
-            height:hp('39%'),
+            height:hp('30%'),
 
          },
 
@@ -53,6 +54,10 @@ const styles = StyleSheet.create({
 
 
            },
+
+           text:{
+            textAlign:'center',
+           }
 
 
 

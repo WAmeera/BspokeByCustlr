@@ -3,15 +3,15 @@ import { Image,ScrollView,View, Text, Button, StyleSheet } from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import Items from './components/items';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Grid from 'react-native-grid-component';
 
 
 
-export default class RegulareFit extends React.Component {
+export default class MuscleFit extends React.Component {
     static navigationOptions = {
       title: 'MuscleFit       ',
 
   };
-
   render() {
        const {navigate} = this.props.navigation;
     return (
@@ -20,16 +20,15 @@ export default class RegulareFit extends React.Component {
       <ScrollView style={styles.scroll}>
         <View style={styles.menuContainer}>
             <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} item="test2" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} item="test3" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} item="test4" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} item="test5" navigation={this.props.navigation}/>
+            <Items itemImage={require('./screens/image/shirt.jpg')} item="test6" navigation={this.props.navigation}/>
             <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
             <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
             <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
             <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-            <Items itemImage={require('./screens/image/shirt.jpg')} item="test1" navigation={this.props.navigation}/>
-
     
             
         </View>
@@ -59,8 +58,6 @@ const styles = StyleSheet.create({
         backgroundColor:'#efefef',
 
   }
-
-
 
 
 

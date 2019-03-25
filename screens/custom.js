@@ -39,14 +39,11 @@ export default class Custom extends React.Component {
           <View style={styles.maintitle}>
             <Text style={styles.main}> Enter Body{"\n"}Measurements </Text>
           </View>
-
-
           <View style={styles.subtitle}>
             <Text style={styles.sub}> *in cm </Text>
           </View>
 
         </View>
-
 
 
         <View style={styles.form}>
@@ -65,7 +62,10 @@ export default class Custom extends React.Component {
                 />
               </View>
 
-            </View>
+        </View>
+
+
+
 
 
 
@@ -85,9 +85,8 @@ const styles = StyleSheet.create({
   },
 
   title:{
-    width:wp('100%'),
-    height:hp('20%'),
     alignItems:'center',
+
   },
 
   main:{
@@ -97,15 +96,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
     textAlign: 'center',
 
-
-  },
-
-  maintitle:{
-    alignItems:'center',
-    textAlign: 'center',
-    paddingTop:80,
-  },
-
+},
     sub:{
     fontSize:15,
     width:wp('100%'),
@@ -116,21 +107,16 @@ const styles = StyleSheet.create({
 
   },
 
-  subtitle:{
-    alignItems:'center',
-    textAlign: 'center',
-  },
-
-
-  form:{
+    form:{
     width:wp('70%'),
-    margin:20,
-    marginLeft:70,
+    marginLeft:50,
+    marginRight:50,    
     marginTop:35,
 
   },
+
     button:{
-    width:wp('60%'),
+    width:wp('40%'),
    
     
   },
@@ -138,10 +124,9 @@ const styles = StyleSheet.create({
   buttonContainer:{
 
     alignItems:'center',
-    margin:60
+    margin:30
     
   }
-
 
 
 

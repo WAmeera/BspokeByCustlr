@@ -96,11 +96,11 @@ const styles = StyleSheet.create({
          },
 
   title: {
-    alignItems:'center',
-   width:wp('40%'),
-   paddingRight:13.5,
-    margin: 80,
-  },
+      alignItems:'center',
+      paddingTop:60,
+      paddingBottom:60,
+
+        },
 
   mainTitle:{
      fontSize: 20,

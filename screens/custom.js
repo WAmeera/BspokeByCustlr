@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Button, Text, View, Image} from 'react-native';
+import {Dimensions,TouchableOpacity,StyleSheet, Button, Text, View, Image} from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import t from 'tcomb-form-native'; // 0.6.9
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -52,19 +52,15 @@ export default class Custom extends React.Component {
 
         </View>
 
-        <View style={styles.buttonContainer}>
+      <View style ={styles.buttonContainer}>
 
-              <View style={styles.button}>
-                <Button title="Next"
-                color="grey"
-                onPress={this.handleSubmit}
-              
-                />
-              </View>
+       <TouchableOpacity activeOpacity={0.8} onPress={() => this.props.navigation.navigate('ShoppingBag')} >
+            
+            <Image source={require('./image/select4.png')}  style={styles.img}/>
 
-        </View>
+       </TouchableOpacity>
 
-
+      </View>
 
 
 
@@ -116,17 +112,24 @@ const styles = StyleSheet.create({
   },
 
     button:{
-    width:wp('40%'),
-   
+    width:wp('40%'),   
     
   },
 
   buttonContainer:{
 
     alignItems:'center',
-    margin:30
+    margin:30,
+
     
-  }
+  },
+
+
+    img:{
+    width: Dimensions.get('window').width*0.45,
+      height:hp('10%'),
+    },
+
 
 
 

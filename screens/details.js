@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, StyleSheet, Button, Text, View,} from 'react-native';
+import {Dimensions,TouchableOpacity, StyleSheet, Button, Text, View,} from 'react-native';
 import {createStackNavigator, createAppContainer} from "react-navigation";
 import {Image} from 'react-native' ; 
 import ImagesSwiper from "react-native-image-swiper";
@@ -48,7 +48,7 @@ export default class DetailsScreen extends React.Component{
 
                         <TouchableOpacity activeOpacity={0.8} onPress={() => this.props.navigation.navigate('Options')} >
             
-                                <Image source={require('./image/select.png')}  style={styles.img}/>
+                                <Image source={require('./image/select4.png')}  style={styles.img}/>
 
                         </TouchableOpacity>
 
@@ -112,14 +112,15 @@ const styles = StyleSheet.create({
 
 
     img:{
-      width:wp('45%'),
-      height:hp('10%'),
+
+          width: Dimensions.get('window').width*0.5,
+          height: Dimensions.get('window').height*0.1,
+
     },
 
 
     info:{
       fontSize: 20,
-      //justifyContent:'center',
 
     },
 

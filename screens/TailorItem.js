@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {TouchableOpacity, Image, ScrollView,Button, Linking, View, StyleSheet } from 'react-native';
+import {Dimensions,TouchableOpacity, Image, ScrollView,Button, Linking, View, StyleSheet } from 'react-native';
 import { Constants, WebBrowser } from 'expo';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import Communications from 'react-native-communications';
@@ -27,25 +27,23 @@ export default class TailorItem extends React.Component {
 
 
                     <View style={styles.button}>
-
-                        <Button
-                              title="Get Location "
-                              color="#6E9C8A"
-                              onPress={this._handleOpenWithLinking}
-
-                            />
-                    </View>
-
+                        
+                        <TouchableOpacity activeOpacity={0.8} onPress={this._handleOpenWithLinking}>
+                           <Image source={require('./image/location.png')}  style={styles.img}/>
+                        </TouchableOpacity>
+                   
+                     </View>
 
 
                     <View style={styles.button}>
-                        <Button
-                              title="Call Tailor "
-                              color="#6E9C8A"
-                              onPress={() => Communications.phonecall(this.props.numbers, true)}
+                        
+                        <TouchableOpacity activeOpacity={0.8} onPress={this._handleOpenWithLinking}>
+                           <Image source={require('./image/call.png')}  style={styles.img}/>
+                        </TouchableOpacity>
+                   
+                     </View>
+               
 
-                            />           
-                    </View>
 
 
                         
@@ -79,25 +77,38 @@ const styles = StyleSheet.create({
 
 
          button: {
+            margin:4,
+            width: Dimensions.get('window').width*0.7,
 
-            height: 45,
-         },
+
+             },
 
 
          image: {
-            margin:15,
             width:wp('50%'),
             height:hp('40%'),
-
+            
+            
          },
 
            buttonContainer: {
              width:wp('90%'),
+             flex:1,
              justifyContent: 'center',
+             alignItems: 'center',
              margin: 30,
+    
 
 
            },
+               
+
+        img:{
+          paddingLeft:5,
+          width: Dimensions.get('window').width*0.75,
+          height: Dimensions.get('window').height*0.06,
+         },
+
 
 
 

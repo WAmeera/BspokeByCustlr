@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Button, Text, View, Image,Switch} from 'react-native';
+import {TouchableOpacity,Dimensions,StyleSheet, Button, Text, View, Image,Switch} from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import t from 'tcomb-form-native'; // 0.6.9
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
@@ -57,16 +57,18 @@ export default class Payment3 extends React.Component {
 
 
 
-            <View style={styles.buttonContainer}>
               <View style={styles.button}>
-                <Button title="Home"
-                color="grey"
-                onPress={this.handleSubmit}
-              
-                />
-              </View>
 
-            </View>
+                 <TouchableOpacity activeOpacity={0.8} onPress={this.handleSubmit} >
+
+              <View style={styles.buttonContainer}>
+            
+                    <Image source={require('./image/home.png')}  style={styles.img}/>
+
+              </View>
+                </TouchableOpacity>
+
+          </View>
         </View>
 
       </View>
@@ -121,27 +123,36 @@ const styles = StyleSheet.create({
 
   title: {
     alignItems:'center',
-    margin: 40,
+    height: Dimensions.get('window').height*0.37,
+
 
   },
 
   mainTitle:{
      fontSize: 20,
      fontWeight: 'bold',
+     paddingTop:35,
   },
 
   button:{
-    width:'100%',
-   
+    alignItems:'center',
     
+    
+
   },
 
   buttonContainer:{
+    paddingLeft:5,
+    width:"58%",
 
-    alignItems:'center',
-    margin:70
     
-  }
+  },
+   img:{
+    width: Dimensions.get('window').width*0.45,
+      height:hp('10%'),
+
+    },
+  
 
 
 });

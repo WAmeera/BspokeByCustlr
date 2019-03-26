@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {AppRegistry,StyleSheet,Text,View,Button,FlatList,Image,ActivityIndicator,Divider, StatusBar} from 'react-native';
+import {Dimensions,TouchableOpacity,Styles,AppRegistry,StyleSheet,Text,View,Button,FlatList,Image,ActivityIndicator,Divider, StatusBar} from 'react-native';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 
@@ -46,9 +47,9 @@ export default class ShoppingBag extends React.Component {
               <Text style  = {{fontSize: 14, color: 'black'}}>
                 Quantity : 1
               </Text>
-              <Button 
-                title="Move to Wishlist" 
-                onPress={() => this.props.navigation.navigate('Wishlist')}/>
+                <TouchableOpacity activeOpacity={0.8} onPress={() => this.props.navigation.navigate('Wishlist')} >   
+                    <Image source={require('./image/movewish.png')}  style={styles.img}/>
+                </TouchableOpacity>
               <Text style  = {{fontSize: 14, color: 'green'}}>
                 Currently Available
               </Text>
@@ -127,3 +128,16 @@ export default class ShoppingBag extends React.Component {
     );
   }
 } 
+
+
+const styles = StyleSheet.create({
+
+   img:{
+    width: Dimensions.get('window').width*0.66,
+      height:hp('10%'),
+
+    },
+  
+
+
+});

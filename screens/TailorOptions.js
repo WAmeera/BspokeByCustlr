@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text,TouchableOpacity, Image, ScrollView,Button, Linking, View, StyleSheet } from 'react-native';
+import {Dimensions,Text,TouchableOpacity, Image, ScrollView,Button, Linking, View, StyleSheet } from 'react-native';
 import { Constants, WebBrowser } from 'expo';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -148,5 +148,11 @@ const styles = StyleSheet.create({
 
   },
 
+  img:{
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height*0.5,
+
+
+  }
 
 });

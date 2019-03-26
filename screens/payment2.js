@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Button, Text, View, Image,Switch} from 'react-native';
+import {Dimensions,TouchableOpacity,StyleSheet, Button, Text, View, Image,Switch} from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -76,22 +76,24 @@ export default class Payment2 extends React.Component {
 
         </View>
 
-        <View style={s.infoContainer}>
-          <View style={s.buttonContainer}>
+
+
               <View style={s.button}>
-                <Button title="Next"
-                color="grey"
-                onPress={this.handleSubmit}
-              
-                />
+
+            <TouchableOpacity activeOpacity={0.8} onPress={this.handleSubmit} >
+              <View style={s.buttonContainer}>
+            
+                    <Image source={require('./image/select4.png')}  style={s.img}/>
+
+               
               </View>
+          </TouchableOpacity>
+          </View>
 
-            </View>
-
-        </View>
+          </View>
            
          
-      </View>
+      
     );
   }
 }
@@ -155,27 +157,23 @@ const s = StyleSheet.create({
      fontWeight: 'bold',
   },
 
+
   button:{
     width:'100%',
-   
-    
+    alignItems:'center',
+
   },
 
   buttonContainer:{
+    width:"38%",
 
-    alignItems:'center',
-    margin:100
     
   },
-       infoContainer: {
-            
+   img:{
+    width: Dimensions.get('window').width*0.45,
+      height:hp('10%'),
 
-        width:wp('80%'),
-        height:hp('100%'),
-
-
-  },
-
+    },
 
 });
 

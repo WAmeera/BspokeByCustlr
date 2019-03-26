@@ -63,6 +63,7 @@ componentDidMount (){
     return (
     <View style={styles.container}>     
         <FlatList
+           numColumns={2}
            data = {this.state.dataSource.filter(items => (items.category == "Muscle Fit"))}
             renderItem = {this.renderItem}
           />

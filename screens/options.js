@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity,Image,ScrollView,View, Text, Button, StyleSheet } from 'react-native';
+import { Dimensions,TouchableOpacity,Image,ScrollView,View, Text, Button, StyleSheet } from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
@@ -14,50 +14,40 @@ export default class HomeScreen extends React.Component {
   render() {
      const {navigate} = this.props.navigation;
 
-
-
     return (
 
 
       <View style={styles.container1}>
-      <View style={styles.buttonContainer}>
-       
-
         
-      <TouchableOpacity activeOpacity={1} onPress={() => navigate('Size')} style={styles.btn}>
-        <View style={styles.absoluteView}>
-            
-        </View>
-        <Image source={require('./image/size1.jpg')}  style={styles.img}/>
-      </TouchableOpacity>
+        <View style={styles.buttonContainer}>
 
-
-
+          <TouchableOpacity activeOpacity={1} onPress={() => navigate('Size')} style={styles.btn}>
+            <Image source={require('./image/size1.jpg')}  style={styles.img}/>
+          </TouchableOpacity>
 
        </View>
 
-       <View style ={styles.buttonContainer}>
-      
-   
-      <TouchableOpacity activeOpacity={1} onPress={() => navigate('Custom')} style={styles.btn}>
-        <View style={styles.absoluteView}>
-            
-        </View>
-        <Image source={require('./image/size2.jpg')}  style={styles.img}/>
-      </TouchableOpacity>
 
+          <View style={styles.buttonContainer}>
 
+          <TouchableOpacity activeOpacity={1} onPress={() => navigate('Custom')} style={styles.btn}>
+            <Image source={require('./image/size2.jpg')}  style={styles.img}/>
+          </TouchableOpacity>
 
        </View>
 
-       <View style ={styles.buttonContainer}>
-                 
-      <TouchableOpacity  onPress={() => navigate('TailorOptions')} activeOpacity={1}  style={styles.btn}>
-        
-        <Image source={require('./image/size3.jpg')}  style={styles.img}/>
-      </TouchableOpacity>
 
-              </View>
+          <View style={styles.buttonContainer}>
+
+          <TouchableOpacity activeOpacity={1} onPress={() => navigate('TailorOptions')} style={styles.btn}>
+            <Image source={require('./image/size3.jpg')}  style={styles.img}/>
+          </TouchableOpacity>
+
+       </View>
+
+    
+
+
 
       </View>
     );
@@ -100,7 +90,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
 
+  img:{
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height*0.33333,
 
+
+  }
 
 
 

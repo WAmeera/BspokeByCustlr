@@ -5,9 +5,10 @@ import {
 	StyleSheet,
 	AsyncStorage
 } from 'react-native';
-import {Container,Content,Header,Form,Input,Item,Button,Label} from 'native-base';
 import * as firebase from 'firebase';
 import HomeScreen from '../screens/HomeScreen';
+import LoginForm from '../src/components/LoginForm';
+import { Button, Card, CardSection, Input, Spinner, Header } from '../src/components/common';
 
 export default class Login extends React.Component{
 
@@ -18,104 +19,55 @@ constructor (props){
 		email : '',
 		password : '',
 		currentemail:'',
-		errorMessage: null 
+		error :'',
+		loading : false
 	})
 }
 
-componentDidMount() {
+componentWillMount() {
+firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ loggedIn: true });
+      } else {
+        this.setState({ loggedIn: false });
+      }
+    });
     firebase.auth().onAuthStateChanged(user => {
       this.props.navigation.navigate(user ? 'DrawerNavigator' :  'Login')
     })
+
   }
 
 static navigationOptions = {
     title: 'Login',
   };
 
-signUp = (email,password) => {
-	try {
 
-	if((this.state.password.length<6)){
-		alert("Please enter at least 6 characters")
-		return;	
-		}
-	
-	firebase.auth().createUserWithEmailAndPassword(email,password)
-	.then(() =>this.handleLogin(email,password))
-	.then(() =>alert (email + " Registered successfully"))
-	
-	}
-	
-	catch(error){
-		alert (error.toString())
-	}
-}
 
-handleLogin = () => {
-    const { email, password } = this.state;
-	if((this.state.password.length<6)){
-		alert("Please enter at least 6 characters")
-		return;	
-		}
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => this.props.navigation.navigate('DrawerNavigator'))
-      .catch(error => this.setState({ errorMessage: error.message }))
-	  alert ("Logged in successfully");
+  renderContent() {
+    switch (this.state.loggedIn) {
+      case true:
+        return (
+          <Button onPress={() => firebase.auth().signOut()}>
+            Log Out
+          </Button>
+        );
+      case false:
+        return <LoginForm navigation={this.props.navigation} />;
+      default:
+        return <Spinner size="large" />;
+    }
   }
 
-
-
-  render(){
-	 	 return (
-		 	 <Container style = {styles.container}>
-			 
-			<Text style = {{fontSize:48 , fontWeight:'bold'}}>Login </Text>
-			 <Form>
-				<Item floatingLabel>
-					<Label>Email</Label>
-					 <Input
-						autoCorrect = {false}
-						autoCapitalize="none"
-						onChangeText= {(email) => this.setState ({email})}
-					/>
-				</Item>
-
-				<Item floatingLabel>
-					<Label>Password</Label>
-					 <Input
-						secureTextEntry
-						autoCorrect = {false}
-						autoCapitalize="none"
-						onChangeText= {(password) => this.setState ({password})}
-					/>
-				</Item>
-
-				<Button style ={{ marginTop:10}}
-				full
-				rounded
-				success
-				onPress={this.handleLogin}
-				
-				>
-					<Text> Login </Text>
-				</Button>
-
-				<Button style ={{ marginTop:10}}
-				full
-				rounded
-				primary
-				onPress={()=>this.props.navigation.navigate('Register')}
-				>
-					<Text> Signup </Text>
-				</Button>
-			</Form>
-			
-		</Container>
-			 );
-		}
- }
+  render() {
+    return (
+      <View>
+        <Header headerText="Login" />
+        {this.renderContent()}
+      </View>
+    );
+  }
+}
 
 
 const styles = StyleSheet.create({

@@ -20,9 +20,11 @@ export default class HomeScreen extends React.Component {
 
 	
       <View style={styles.container1}>
-	 
+	  <View>
+		<MenuButton navigation={this.props.navigation}/>
+		</View>
       <View style={styles.buttonContainer}>
-        <MenuButton navigation={this.props.navigation}/>
+        
 
         
       <TouchableOpacity activeOpacity={1} onPress={() => navigate('Muscle')} style={styles.btn}>

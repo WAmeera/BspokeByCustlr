@@ -27,7 +27,8 @@ import Recommendation from './screens/Recom';
 import Register from './screens/regis';
 import MenuDrawer from './components/MenuDrawer';
 import * as firebase from 'firebase';
-import AddressModal from './screens/AddressModal'
+import AddressModal from './screens/AddressModal';
+import LoginForm from './src/components/LoginForm';
 //connect to database
 var config = {
     apiKey: "AIzaSyB5abld-pkUYqwM8SCSzzqjRO171JPsLDU",
@@ -103,6 +104,9 @@ const RegisterNavigator = createSwitchNavigator({
   },);
 
 const AppNavigator = createStackNavigator({   //control everything
+LoginForm :{
+	screen: LoginForm,
+},
 Recommendation:{
 	screen: Recommendation,
 },

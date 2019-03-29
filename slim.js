@@ -19,17 +19,30 @@ constructor (props){
       this.state = {
         dataSource : [],
         isLoading: true,
-		Array : ''
+		categoryArray : '',
+		colorArray : ''
       }
     } 
 
-async getKey(key) {
+async getCategoryKey(key) {
     try {
       const value = await AsyncStorage.getItem(key);
 	  if (value != null)
-	  this.setState({Array: value});
+	  this.setState({categoryArray: value});
 	  console.log(value);
-	  await AsyncStorage.setItem(key, this.state.Array);
+	  await AsyncStorage.setItem(key, this.state.categoryArray);
+    } catch (error) {
+      console.log("Error retrieving data" + error);
+    }
+  };
+
+async getColorKey(key) {
+    try {
+      const value = await AsyncStorage.getItem(key);
+	  if (value != null)
+	  this.setState({colorArray: value});
+	  console.log(value);
+	  await AsyncStorage.setItem(key, this.state.colorArray);
     } catch (error) {
       console.log("Error retrieving data" + error);
     }
@@ -44,7 +57,8 @@ async saveKey(key) {
   };
 
 componentWillMount (){
-	this.getKey('PreferCategory');
+	this.getCategoryKey('PreferCategory');
+	this.getColorKey('PreferColor');
 
 	firebase.database().ref('items').once('value', snapshot =>{
 	 var items = [];
@@ -55,6 +69,7 @@ componentWillMount (){
           Price: child.val().Price,
 		  ID : child.val().ID,
 		  category : child.val().category,
+		  color : child.val().color,
        });
     });
 	this.setState({
@@ -72,6 +87,7 @@ renderItem = ({item}) => {
 			itemID={item.ID}
 			category={item.category}
 			Price ={item.Price}
+			color = {item.color}
 			>
              <Text style  = {{fontSize: 16, color: 'black'}}>
                 {item.brand}
@@ -99,7 +115,7 @@ this.props.navigation.navigate('Recommendation');
     <View style={styles.container}> 
         <FlatList
            numColumns={2}
-           data = {this.state.dataSource/*.filter(items => (items.category == "Slim Fit"))*/}
+           data = {this.state.dataSource.filter(items => (items.category == "Slim Fit"))}
             renderItem = {this.renderItem}
           />
 			<Button onPress={this.Gotorecom} title ="Recommendation"/>

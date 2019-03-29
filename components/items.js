@@ -31,18 +31,10 @@ export default class Items extends React.Component{
     }
   };
 
-  async resetKey(key) {
-    try {
-      await AsyncStorage.removeItem(key);
-      const value = await AsyncStorage.getItem(key);
-      //this.setState({myKey: value});
-    } catch (error) {
-      console.log("Error resetting data" + error);
-    }
-  };
-
 PressedtoRecordView =()=>{
 	this.saveKey('PreferCategory',this.props.category);
+	this.saveKey('PreferColor',this.props.color)
+
 
 	this.props.navigation.navigate(
 					'Details',

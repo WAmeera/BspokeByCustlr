@@ -44,6 +44,7 @@ firebase.auth().onAuthStateChanged((user) => {
 
   }
 
+
 static navigationOptions = {
     title: 'Login',
   };
@@ -65,7 +66,7 @@ signOutUser = () => {
 		  <Text style = {styles.container}> 
 		  Hi {currentUser && currentUser.email}
 		  </Text>
-          <Button onPress={() => this.props.navigation.navigate('DrawerNavigator')}>
+          <Button onPress={() => this.props.navigation.navigate('HomeScreen')}>
             Start shopping
           </Button>
 		  <Button onPress={()=>this.signOutUser()}>

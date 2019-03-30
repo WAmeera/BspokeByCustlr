@@ -110,9 +110,6 @@ LoginForm :{
 Recommendation:{
 	screen: Recommendation,
 },
-Register: {
-    screen: Register,
-	},
  RegisterNavigator: {
     screen: RegisterNavigator,
   },

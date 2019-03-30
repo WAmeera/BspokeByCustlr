@@ -13,7 +13,7 @@ class LoginForm extends Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => this.props.navigation.navigate('HomeScreen'))
+      .then(() => this.props.navigation.navigate('Home'))
 	  .catch(error => this.setState({ error: 'Wrong email and password combination' }))
 	  .then(() => this.setState({
       email: '',

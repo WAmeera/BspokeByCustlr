@@ -66,7 +66,7 @@ signOutUser = () => {
 		  <Text style = {styles.container}> 
 		  Hi {currentUser && currentUser.email}
 		  </Text>
-          <Button onPress={() => this.props.navigation.navigate('HomeScreen')}>
+          <Button onPress={() => this.props.navigation.navigate('Home')}>
             Start shopping
           </Button>
 		  <Button onPress={()=>this.signOutUser()}>

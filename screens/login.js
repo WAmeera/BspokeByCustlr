@@ -20,11 +20,17 @@ constructor (props){
 		password : '',
 		currentemail:'',
 		error :'',
-		loading : false
+		loading : false,
+		loggedIn : null,
+		currentUser : null
 	})
 }
 
+
+
 componentWillMount() {
+ const { currentUser } = firebase.auth();
+    this.setState({ currentUser });
 firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
@@ -32,9 +38,9 @@ firebase.auth().onAuthStateChanged((user) => {
         this.setState({ loggedIn: false });
       }
     });
-    firebase.auth().onAuthStateChanged(user => {
+   /* firebase.auth().onAuthStateChanged(user => {
       this.props.navigation.navigate(user ? 'DrawerNavigator' :  'Login')
-    })
+    })*/
 
   }
 
@@ -42,15 +48,30 @@ static navigationOptions = {
     title: 'Login',
   };
 
-
+signOutUser = () => {
+     firebase
+      .auth()
+      .signOut()
+      .then(() => this.setState({ loggedIn:false}))
+}
 
   renderContent() {
+  const { currentUser } = this.state
     switch (this.state.loggedIn) {
       case true:
         return (
-          <Button onPress={() => firebase.auth().signOut()}>
-            Log Out
+		<View style = {{height : 300}}>
+			<Header headerText="User Info" />
+		  <Text style = {styles.container}> 
+		  Hi {currentUser && currentUser.email}
+		  </Text>
+          <Button onPress={() => this.props.navigation.navigate('DrawerNavigator')}>
+            Start shopping
           </Button>
+		  <Button onPress={()=>this.signOutUser()}>
+			Log Out
+		</Button>
+		 </View>
         );
       case false:
         return <LoginForm navigation={this.props.navigation} />;
@@ -62,7 +83,6 @@ static navigationOptions = {
   render() {
     return (
       <View>
-        <Header headerText="Login" />
         {this.renderContent()}
       </View>
     );
@@ -74,7 +94,10 @@ const styles = StyleSheet.create({
   container: {
    flex: 1,
    justifyContent: 'center', 
-   padding: 10,
+   fontSize : 20,
+   alignSelf: 'center',
+   paddingTop: 10,
+   height: 60
   },
 });
 

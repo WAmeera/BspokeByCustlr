@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import firebase from 'firebase';
-import { Button, Card, CardSection, Input, Spinner } from './common';
+import { Button, Card, CardSection, Input, Spinner, Header } from './common';
 
 class LoginForm extends Component {
   state = { email: '', password: '', error: '', loading: false };
@@ -9,22 +9,30 @@ class LoginForm extends Component {
   handleLogin = () => {
     const { email, password } = this.state;
 	this.setState({ error: '', loading: true });
-	if((this.state.password.length<6)){
-		alert("Please enter at least 6 characters")
-		return;	
-		}
+	
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
+      .then(() => this.props.navigation.navigate('DrawerNavigator'))
+	  .catch(error => this.setState({ error: 'Wrong email and password combination' }))
 	  .then(() => this.setState({
       email: '',
       password: '',
-      loading: false,
-      error: ''
+      loading: false
     }))
-      .then(() => this.props.navigation.navigate('DrawerNavigator'))
-	  .catch(error => this.setState({ error: error.message }))
       
+  }
+
+  componentWillMount() {
+firebase.auth().onAuthStateChanged((user) => {
+      if (user) 
+        this.setState({ error: ''});
+      
+    });
+   /* firebase.auth().onAuthStateChanged(user => {
+      this.props.navigation.navigate(user ? 'DrawerNavigator' :  'Login')
+    })*/
+
   }
 
   handleSignUp =() =>{
@@ -42,6 +50,7 @@ class LoginForm extends Component {
 
     return (
 	<View style ={{ height:100, width:360, alignItems: 'center'}}>
+
 	<View style= {{ height:40, width:360,  alignItems :'center'}} >
       <Button onPress={this.handleLogin}>
         Log in
@@ -58,6 +67,8 @@ class LoginForm extends Component {
 
   render() {
     return (
+	<View>
+		<Header headerText="Login" />
       <Card>
         <CardSection>
           <Input
@@ -86,6 +97,7 @@ class LoginForm extends Component {
           {this.renderButton()}
         </View>
       </Card>
+	</View>
     );
   }
 }

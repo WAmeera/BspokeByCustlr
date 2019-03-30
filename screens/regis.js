@@ -35,7 +35,7 @@ signUp = (email,password) => {
 		}
 	
 	firebase.auth().createUserWithEmailAndPassword(email,password)
-	.then(() => this.props.navigation.navigate('HomeScreen'))
+	.then(() => this.props.navigation.navigate('DrawerNavigator'))
 	.then(() =>alert (email + " Registered successfully"))
 	
 	}

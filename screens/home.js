@@ -3,6 +3,7 @@ import { Dimensions,TouchableOpacity,Image,ScrollView,View, Text, Button, StyleS
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import MenuButton from '../components/MenuButton.js';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {DrawerActions} from 'react-navigation-drawer';
 
 
 
@@ -20,11 +21,8 @@ export default class HomeScreen extends React.Component {
 
 	
       <View style={styles.container1}>
-	  <View>
-		<MenuButton navigation={this.props.navigation}/>
-		</View>
       <View style={styles.buttonContainer}>
-        
+        <MenuButton navigation={this.props.navigation}/>
 
         
       <TouchableOpacity activeOpacity={1} onPress={() => navigate('Muscle')} style={styles.btn}>

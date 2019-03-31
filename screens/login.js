@@ -22,27 +22,45 @@ constructor (props){
 		error :'',
 		loading : false,
 		loggedIn : null,
-		currentUser : null
+		currentUser : null,
+		userName : '',
+		userMail : '',
+		userCard : ''
 	})
 }
 
-
-
 componentWillMount() {
- const { currentUser } = firebase.auth();
-    this.setState({ currentUser });
 firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
+		const { currentUser } = firebase.auth();
+		this.setState ({currentUser});
+		const currentUser2 = this.state.currentUser;
+	firebase.database().ref(`/users/${currentUser2.uid}/info`)
+     .once('value', snapshot =>{
+	 var items = {};
+	 items = snapshot.val();
+	 this.setState({
+	userName : items.fullName,
+	userMail : items.mailingAddress,
+	userCard : items.cardNo
+	});
+	 console.log(this.state.userName);
+    });
       } else {
         this.setState({ loggedIn: false });
       }
     });
+if (this.state.currentUser != null){
+
+ }
    /* firebase.auth().onAuthStateChanged(user => {
       this.props.navigation.navigate(user ? 'DrawerNavigator' :  'Login')
     })*/
 
-  }
+
+ 
+ }
 
 
 static navigationOptions = {
@@ -56,19 +74,41 @@ signOutUser = () => {
       .then(() => this.setState({ loggedIn:false}))
 }
 
+renderUser(){
+const {currentUser} = this.state;
+if (currentUser != null){
+return(
+ <Text style = {styles.container}> 
+		  Hi {currentUser && currentUser.email} {"\n"}
+		  Full name : {this.state.userName}{"\n"}
+		  Mailing address : {this.state.userMail}{"\n"}
+		  Credit card : {this.state.userCard}
+		  </Text> )
+		  }
+else
+{
+	return <Spinner size="large" />;
+}
+}
+
   renderContent() {
-  const { currentUser } = this.state
+  const { currentUser } = this.state;
     switch (this.state.loggedIn) {
       case true:
         return (
 		<View style = {{height : 300}}>
 			<Header headerText="User Info" />
-		  <Text style = {styles.container}> 
-		  Hi {currentUser && currentUser.email}
-		  </Text>
+		 {this.renderUser()}
           <Button onPress={() => this.props.navigation.navigate('Home')}>
             Start shopping
           </Button>
+		  <Button onPress={() => this.props.navigation.navigate('Modalstack',{
+		  name:this.state.userName,
+		  mail:this.state.userMail,
+		  card:this.state.userCard,
+		  })}>
+			Change Info
+		  </Button>
 		  <Button onPress={()=>this.signOutUser()}>
 			Log Out
 		</Button>

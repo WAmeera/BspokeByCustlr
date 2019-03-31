@@ -29,6 +29,8 @@ import MenuDrawer from './components/MenuDrawer';
 import * as firebase from 'firebase';
 import AddressModal from './screens/AddressModal';
 import LoginForm from './src/components/LoginForm';
+import TextSearch from './screens/TextSearch';
+
 //connect to database
 var config = {
     apiKey: "AIzaSyB5abld-pkUYqwM8SCSzzqjRO171JPsLDU",
@@ -86,8 +88,6 @@ const DrawerNavigator = createDrawerNavigator(
 {
 	Home:{
 	screen:HomeScreen,},
-	Modalstack: {
-    screen: Modalstack,},
 	AddressModal :{
 	screen : AddressModal,},
 },
@@ -101,9 +101,15 @@ const RegisterNavigator = createSwitchNavigator({
 	Login: {
 		screen:Login,
 	},
+	Modalstack: {
+    screen: Modalstack,
+	},
   },);
 
 const AppNavigator = createStackNavigator({   //control everything
+TextSearch :{
+	screen: TextSearch,
+},
 LoginForm :{
 	screen: LoginForm,
 },

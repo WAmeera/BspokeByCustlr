@@ -29,7 +29,6 @@ async getCategoryKey(key) {
       const value = await AsyncStorage.getItem(key);
 	  if (value != null)
 	  this.setState({categoryArray: value});
-	  console.log(value);
 	  await AsyncStorage.setItem(key, this.state.categoryArray);
     } catch (error) {
       console.log("Error retrieving data" + error);
@@ -41,7 +40,6 @@ async getColorKey(key) {
       const value = await AsyncStorage.getItem(key);
 	  if (value != null)
 	  this.setState({colorArray: value});
-	  console.log(value);
 	  await AsyncStorage.setItem(key, this.state.colorArray);
     } catch (error) {
       console.log("Error retrieving data" + error);

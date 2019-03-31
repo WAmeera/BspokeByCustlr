@@ -9,7 +9,7 @@ import * as firebase from 'firebase';
 
 export default class Recommendation extends React.Component {
     static navigationOptions = {
-      title: 'Recommendation',
+      title: 'Recommendation            ',
 
   };
 

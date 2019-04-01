@@ -3,6 +3,7 @@ import { Dimensions,TouchableOpacity,Image,ScrollView,View, Text, Button, StyleS
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import MenuButton from '../components/MenuButton.js';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {DrawerActions} from 'react-navigation-drawer';
 
 
 
@@ -10,6 +11,14 @@ export default class HomeScreen extends React.Component {
 
   static navigationOptions = {
           title: 'Home     ',
+          tabBarIcon:({tintColor}) =>(
+         <View style={{paddingRight:5}}>
+
+          <Image source={require('./image/homeicon.png')}
+            style={{width:22,height:22,tintColor:'white'}}>
+            </Image>
+        </View>
+        )
   };
   render() {
      const {navigate} = this.props.navigation;
@@ -20,9 +29,8 @@ export default class HomeScreen extends React.Component {
 
 	
       <View style={styles.container1}>
-	 
       <View style={styles.buttonContainer}>
-        <MenuButton navigation={this.props.navigation}/>
+       
 
         
       <TouchableOpacity activeOpacity={1} onPress={() => navigate('Muscle')} style={styles.btn}>

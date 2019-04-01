@@ -9,8 +9,17 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 /***************************class ShoppingBag*************************************/
 export default class ShoppingBag extends React.Component {
+
   static navigationOptions = {
-      title: 'Cart   ',
+          title: 'Cart     ',
+          tabBarIcon:({tintColor}) =>(
+        <View style={{paddingRight:5,paddingTop:2}}>
+ 
+          <Image source={require('./image/cart.png')}
+            style={{width:23,height:23,tintColor:'white'}}>
+            </Image>
+        </View>
+        )
   };
     //default constructor for class ShoppingBag
     constructor (){

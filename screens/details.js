@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions,TouchableOpacity, StyleSheet, Button, Text, View,} from 'react-native';
+import {Dimensions,TouchableOpacity, StyleSheet, Button, Text, View,AsyncStorage} from 'react-native';
 import {createStackNavigator, createAppContainer} from "react-navigation";
 import {Image} from 'react-native' ; 
 import ImagesSwiper from "react-native-image-swiper";
@@ -7,7 +7,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 export default class DetailsScreen extends React.Component{
   static navigationOptions = {
-      title: 'Details    ',
+      title: 'Details',
   };
 
   render(){
@@ -17,6 +17,10 @@ export default class DetailsScreen extends React.Component{
   "https://firebasestorage.googleapis.com/v0/b/lotapp-9e84d.appspot.com/o/fan.jpg?alt=media&token=b419d507-9de8-4c4c-97e3-6b4eb2202e68",
   "https://firebasestorage.googleapis.com/v0/b/lotapp-9e84d.appspot.com/o/stone.jpg?alt=media&token=e9d41537-7f26-4bfd-86eb-c2ef6fc58a9c"
 ];
+	const ID = this.props.navigation.getParam('itemID', 0);
+	const Price = this.props.navigation.getParam('Price', 0);
+	const category = this.props.navigation.getParam('category',"x");
+	
 
     return(
       <View style={styles.container}>
@@ -41,8 +45,8 @@ export default class DetailsScreen extends React.Component{
 
           
 
-                        <Text style={styles.info}> RM99 {"\n"}
-                              Pure Cotton
+                        <Text style={styles.info}> {Price} {"\n"}
+                              {category}
                         </Text>
 
 

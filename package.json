@@ -31,6 +31,7 @@
     "react-native-slideshow": "^1.0.1",
     "react-native-super-grid": "^3.0.3",
     "react-navigation": "^3.0.9",
+    "react-redux": "^6.0.1",
     "react-simple-image-slider": "^1.0.2",
     "react-slidin": "^1.0.4",
     "react-smart-slider": "0.0.9",

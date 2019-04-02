@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import {Dimensions,TouchableOpacity,Styles,AppRegistry,StyleSheet,Text,View,Button,FlatList,Image,ActivityIndicator,Divider, StatusBar} from 'react-native';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
-
-
+import * as firebase from 'firebase';
 
 
 /***************************class ShoppingBag*************************************/
@@ -20,18 +18,48 @@ export default class ShoppingBag extends React.Component {
         isLoading: true
       }
     }
+  
+  componentWillMount (){
+   global.itemCount = 0;  
+   global.totalPrice = 0; 
+  firebase.database().ref('ShoppingBag').once('value', snapshot =>{
+   var ShoppingBag = [];
+     snapshot.forEach((child) => {
+       ShoppingBag.push({
+          brand: child.val().brand,
+          name: child.val().name,
+          Price: child.val().Price,
+          itemID : child.val().itemID,
+          Size: child.val().size,
+          Quantity: child.val().Quantity,
+          Photo1: child.val().Photo1,
+          category: child.val().category,
+          collar: child.val().collar,
+          shoulder: child.val().shoulder,
+          chest: child.val().chest,
+          sleeve: child.val().sleeve,
+          uniqueKey: child.key,
+       });
+        itemCount += 1; 
+        totalPrice += child.val().Price; 
+    });
+  this.setState({
+  dataSource : ShoppingBag
+ });
+ });
+ };
+
   //function renderItem - will show the informations fetched from the database to the user-end (the shopping bag list)
   //function renderSeperator - will show a line, in this class it is used to seperate each items on the list
-  //function componentDidMount - fetch data and information from the database - current url used is a dummy data created using an online json generator
     renderItem = ({item}) => {
+      const size = this.props.navigation.getParam('size', '');
+      var itemprice = item.Price;  
+      var uniqueKey = item.uniqueKey;  
       return(
         <View style ={{flex: 1, flexDirection: 'row', marginBottom: 3}}>
          <Image  style = {{width: 140, height: 190, margin: 5}}
-            source = {{url : item.picture}} />
+            source = {{url : item.Photo1}} />
             <View style ={{flex:1, justifyContent: 'center', marginLeft :5}}>
-              <Text style = {{fontSize: 10, color: 'grey', marginLeft: 200}}>
-                  X
-              </Text>
               <Text style  = {{fontSize: 20, color: 'black', marginBottom: 2, marginTop : 0}}>
                 {item.brand}
               </Text>
@@ -39,23 +67,32 @@ export default class ShoppingBag extends React.Component {
                 {item.name}
               </Text>
               <Text style  = {{fontSize: 14, color: 'red', marginBottom: 15}}>
-                RM {item.price}
+                RM {item.Price}
               </Text>
               <Text style  = {{fontSize: 14, color: 'black'}}>
-                Size: {item.size}
+                Size : {item.Size} 
               </Text>
-              <Text style  = {{fontSize: 14, color: 'black'}}>
-                Quantity : 1
+              <Text style  = {{fontSize: 14, color: 'black', marginBottom: 2}}>
+                Measurement : {item.collar}cm (Collar) - {item.shoulder}cm (Shoulder) - {item.chest}cm (Chest) - {item.sleeve}cm (Sleeve)
               </Text>
-                <TouchableOpacity activeOpacity={0.8} onPress={() => this.props.navigation.navigate('Wishlist')} >   
-                    <Image source={require('./image/movewish.png')}  style={styles.img}/>
-                </TouchableOpacity>
               <Text style  = {{fontSize: 14, color: 'green'}}>
-                Currently Available
+                Quantity : {item.Quantity} 
               </Text>
+               <Button onPress={() => this.deleteData(uniqueKey, itemprice)} title="Remove Item" color="black"/> 
             </View>
         </View>
       )
+    }
+
+    deleteData  = (key, price)  => { 
+      totalPrice -= price;  
+      itemCount -= 1;
+      firebase.database().ref('ShoppingBag').child(key).remove();
+      this.onDelete();
+    }
+
+    onDelete = () => {
+      this.componentWillMount ();
     }
 
     renderSeperator = () => {
@@ -66,36 +103,10 @@ export default class ShoppingBag extends React.Component {
       )
     }
 
-    componentDidMount (){
-      const url = 'https://next.json-generator.com/api/json/get/VkrE55J8L?indent=1'
 
-    
-      fetch (url)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({
-          dataSource: responseJson.dummy_data, //dummy data is the name of the data source
-          isLoading: false
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    }
 
-    //main function for the class ShoppingBag; function componentDidMount, renderItem, and renderSeperator is called in this function as well
-    //ActivityIndicator animates the "loading" in the ShoppingBag page
-    //keyExtractor is a variable that will be used once the real database is implemented (i forgot to put a unique index in the dummy data)
-    //if you encounter a warning of "missing keys of items" that was because the keyExtractor stated above, ignore it for the time being
-    //line 119 - 127 : buttons and its styling for the button used to navigate from this ShoppingBag page to the payment page
     render () {
       return (
-        this.state.isLoading
-        ?
-        <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-          <ActivityIndicator size="large" color="#330066" animating/> 
-        </View>
-        :
         <View style = {{flex: 1, alignContent: 'center'}}>
           <FlatList
             data = {this.state.dataSource}
@@ -105,14 +116,14 @@ export default class ShoppingBag extends React.Component {
           />
           <View style={{ backgroundColor: '#AAAAAA'}}>
             <Text></Text>
-            <Text style  = {{fontSize: 14, color: '#FFFF'}}>  Sub-total (3 item) : </Text>
+            <Text style  = {{fontSize: 14, color: '#FFFF'}}>  Sub-total ({itemCount} item(s)) : RM {totalPrice} </Text> 
             <Text></Text>
-            <Text style  = {{fontSize: 14, color: '#FFFF'}}>  Est. Shipping </Text>
+            <Text style  = {{fontSize: 14, color: '#FFFF'}}>  Est. Shipping : FREE </Text>
             <Text></Text>
             <Text></Text>
             <View style={{ borderBottomColor: '#FFFF', borderBottomWidth: 1, borderWidth: 0.5}}/>
             <Text></Text>
-            <Text style  = {{fontSize: 14, color: '#FFFF'}}>  Grand total : </Text>
+            <Text style  = {{fontSize: 14, color: '#FFFF'}}>  Grand total : RM {totalPrice} </Text>
             <Text></Text>
             <Text></Text>
             <View style={{ borderBottomColor: '#FFFF', borderBottomWidth: 1, borderWidth: 0.5}}/>

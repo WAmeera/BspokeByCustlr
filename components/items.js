@@ -40,7 +40,11 @@ PressedtoRecordView =()=>{
 					'Details',
 					{itemID:this.props.itemID,
 					Price:this.props.Price,
-					category:this.props.category,}
+					category:this.props.category,
+         brand: this.props.brand,
+         name: this.props.name,
+         Photo1: this.props.Photo1,
+       }
 					)
 }
 

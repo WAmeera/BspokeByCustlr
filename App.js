@@ -16,7 +16,7 @@ export default class App extends React.Component {
                 styles.container
             } >
             <
-            Text > Welcome to Bspoke by Custlr! < /Text></View > );
+            Text > Wow! < /Text></View > );
     }
 }
 

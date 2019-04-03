@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity,Dimensions,Image,Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import firebase from 'firebase';
 import { Button, Card, CardSection, Input, Spinner, Header } from './common';
 
@@ -36,7 +36,7 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 
   handleSignUp =() =>{
-  this.props.navigation.navigate('Register') 
+  this.props.navigation.navigate('Register')
   }
 
   onLoginFail() {
@@ -49,38 +49,18 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 
     return (
-<View style ={{ height:100, width:360, alignItems: 'center'}}>
+	<View style ={{ height:100, width:360, alignItems: 'center'}}>
 
-    <View style={styles.button}>
-
-
-     <TouchableOpacity activeOpacity={1} onPress={this.handleLogin} >
-       
-        <Image source={require('./login.png')}  style={styles.btn}/>
-      </TouchableOpacity>
-
-
-
-
-
-
-
-
-
-
-   </View>
-
-  <View style={styles.button}>
-
-
-
-     <TouchableOpacity activeOpacity={1} onPress={this.handleSignUp} >
-       
-        <Image source={require('./register.png')}  style={styles.btn}/>
-      </TouchableOpacity>
-
-     </View>
-
+	<View style= {{ height:40, width:360,  alignItems :'center'}} >
+      <Button onPress={this.handleLogin}>
+        Log in
+      </Button>
+	</View>
+	<View style= {{ height:40, width:360,  alignItems :'center'}} >
+	  <Button onPress={this.handleSignUp}>
+		Register
+	  </Button>
+	</View>
 	</View>
     );
   }
@@ -88,14 +68,7 @@ firebase.auth().onAuthStateChanged((user) => {
   render() {
     return (
 	<View>
-     <View style={styles.image}>
-
-      <Image source={require('./logo.png')}  style={styles.img}/>
-
-
-
-    </View>
-    <View style={styles.card}>
+		<Header headerText="Login" />
       <Card>
         <CardSection>
           <Input
@@ -104,11 +77,8 @@ firebase.auth().onAuthStateChanged((user) => {
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
           />
-
-
         </CardSection>
-        
- 
+
         <CardSection>
           <Input
             secureTextEntry
@@ -119,17 +89,14 @@ firebase.auth().onAuthStateChanged((user) => {
           />
         </CardSection>
 
-        
-
         <Text style={styles.errorTextStyle}>
           {this.state.error}
         </Text>
 
+        <View style= {{ height:120, width:360,  alignItems :'center'}}>
           {this.renderButton()}
-        
-
+        </View>
       </Card>
-    </View>
 	</View>
     );
   }
@@ -137,41 +104,9 @@ firebase.auth().onAuthStateChanged((user) => {
 
 const styles = {
   errorTextStyle: {
-    fontSize: 15,
+    fontSize: 20,
     alignSelf: 'center',
     color: 'red',
-  },
-
-
-
-  button:{
-    margin:5,
-  },
-
-  img:{
-    width: Dimensions.get('window').width*0.4,
-    height: Dimensions.get('window').height*0.2,
-
-  },
-  image:{
-    
-    alignItems:'center',
-    justifyContent:'center',
-  
-  },
-
-  header:{
-    fontWeight:'bold',
-  },
-
-  card:{
-    margin:30,
-  },
-
-  btn:{
-    width: Dimensions.get('window').width*0.4,
-    height: Dimensions.get('window').height*0.06,
-     
   }
 };
 

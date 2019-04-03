@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Image,ScrollView,View, Text, Button, StyleSheet, AsyncStorage } from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import Items from './components/items';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
+import {Component} from 'react';
 import {AppRegistr,FlatList,ListView, ActivityIndicator,Divider, StatusBar} from 'react-native';
 import * as firebase from 'firebase';
+
 
 export default class SlimFit extends React.Component {
     static navigationOptions = {
@@ -28,6 +29,7 @@ async getCategoryKey(key) {
       const value = await AsyncStorage.getItem(key);
 	  if (value != null)
 	  this.setState({categoryArray: value});
+	  console.log(value);
 	  await AsyncStorage.setItem(key, this.state.categoryArray);
     } catch (error) {
       console.log("Error retrieving data" + error);
@@ -39,6 +41,7 @@ async getColorKey(key) {
       const value = await AsyncStorage.getItem(key);
 	  if (value != null)
 	  this.setState({colorArray: value});
+	  console.log(value);
 	  await AsyncStorage.setItem(key, this.state.colorArray);
     } catch (error) {
       console.log("Error retrieving data" + error);
@@ -85,6 +88,9 @@ renderItem = ({item}) => {
 			category={item.category}
 			Price ={item.Price}
 			color = {item.color}
+       brand = {item.brand}
+      name = {item.name}
+      Photo1 = {item.Photo1}
 			>
              <Text style  = {{fontSize: 16, color: 'black'}}>
                 {item.brand}
@@ -102,10 +108,6 @@ renderItem = ({item}) => {
       )
     }
 
-Gotorecom = () =>{
-this.props.navigation.navigate('TextSearch');
-}
-
  render() {
        const {navigate} = this.props.navigation;
     return (
@@ -115,7 +117,6 @@ this.props.navigation.navigate('TextSearch');
            data = {this.state.dataSource.filter(items => (items.category == "Muscle Fit"))}
             renderItem = {this.renderItem}
           />
-
     </View>
     );
   }

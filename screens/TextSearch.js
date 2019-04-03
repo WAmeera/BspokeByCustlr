@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Image, SrollView, StyleSheet, View, Text, TextInput, AppRegistr,FlatList,ListView, ActivityIndicator,Divider, StatusBar} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation'; 
-import { Card, CardSection,CardSection2, Spinner, Header } from '../src/components/common';
+import { Card2, CardSection2 ,Card, CardSection, Spinner, Header } from '../src/components/common';
 import Items from '../components/items';
 import * as firebase from 'firebase';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -58,10 +58,10 @@ export default class AddressModal extends React.Component {
   for (i=0;i<this.state.dataSource.length;i++)
   {
 	if ( (dataSource[i].brand.includes(word) || 
-		 dataSource[i].name.includes(word) ||
-		 dataSource[i].category.includes(word) ||
-		 dataSource[i].color.includes(word) ||
-		 dataSource[i].Status.includes(word) ||
+		 dataSource[i].name.includes(word) || 
+		 dataSource[i].category.includes(word) || 
+		 dataSource[i].color.includes(word) || 
+		 dataSource[i].Status.includes(word) || 
 		 dataSource[i].Materials.includes(word) ||
 		 dataSource[i].Details.includes(word)) && (word!='') )
 		 {
@@ -72,8 +72,8 @@ export default class AddressModal extends React.Component {
   if (this.state.loading == false){
     return (
       <View style={{ flex: 1 }}>
-		 <Card>
-        <CardSection>
+		 <Card2>
+        <CardSection2>
 		  <TextInput
 			placeholder= "Search"
 			autoCorrect={false}
@@ -81,8 +81,8 @@ export default class AddressModal extends React.Component {
 			value={this.state.word}
 			onChangeText={word => this.setState({ word })}
 		  />
-        </CardSection>
-		</Card>
+        </CardSection2>
+		</Card2>
 	<View style={styles.container}> 
 
         <FlatList

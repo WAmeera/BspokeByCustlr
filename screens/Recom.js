@@ -9,12 +9,8 @@ import * as firebase from 'firebase';
 
 export default class Recommendation extends React.Component {
     static navigationOptions = {
-      title: 'Recommend                              ',
-           tabBarIcon:({tintColor}) =>(
-          <Image source={require('./image/recommend.png')}
-            style={{paddingRight:2,width:22,height:22,tintColor:'white'}}>
-            </Image>
-        )
+      title: 'Recommendation',
+
   };
 
 constructor (props){

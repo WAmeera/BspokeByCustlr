@@ -11,6 +11,14 @@ export default class HomeScreen extends React.Component {
 
   static navigationOptions = {
           title: 'Home     ',
+          tabBarIcon:({tintColor}) =>(
+         <View style={{paddingRight:5}}>
+
+          <Image source={require('./image/homeicon.png')}
+            style={{width:22,height:22,tintColor:'white'}}>
+            </Image>
+        </View>
+        )
   };
   render() {
      const {navigate} = this.props.navigation;

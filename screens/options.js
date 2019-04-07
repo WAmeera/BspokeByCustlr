@@ -9,7 +9,7 @@ import * as firebase from 'firebase';
 export default class Options extends React.Component {
 
   static navigationOptions = {
-          title: 'Options     ',
+          title: 'Options         ',
   };
   render() {
      const {navigate} = this.props.navigation;

@@ -8,7 +8,7 @@ import * as firebase from 'firebase';
 
 export default class DetailsScreen extends React.Component{
   static navigationOptions = {
-      title: 'Details',
+      title: 'Details       ',
   };
 
   render(){

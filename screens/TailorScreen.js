@@ -23,9 +23,10 @@ export default class Tailor extends Component {
          <ScrollView style={styles.menuContainer}>
 
             <TailorItem itemImage={require('./image/p1.png')} numbers='0167385903' coordinate='https://www.google.com/maps/search/?api=1&query=2.9451,101.8761'/>
-            <TailorItem itemImage={require('./image/p2.png')} numbers='0166666666' coordinate='https://www.google.com/maps/search/?api=1&query=3.0465,101.6185'/>
-            <TailorItem itemImage={require('./image/p3.png')} numbers='0167777777' coordinate='https://www.google.com/maps/search/?api=1&query=2.9451,101.8761'/>
-            <TailorItem itemImage={require('./image/p4.png')} numbers='0168888888' coordinate='https://www.google.com/maps/search/?api=1&query=2.9451,101.8761'/>
+            <TailorItem itemImage={require('./image/p2.png')} numbers='01123061525' coordinate='https://www.google.com/maps/search/?api=1&query=3.0465,101.6185'/>
+            <TailorItem itemImage={require('./image/p3.png')} numbers='0177137452' coordinate='https://www.google.com/maps/search/?api=1&query=2.9451,101.8761'/>
+            <TailorItem itemImage={require('./image/p4.png')} numbers='0138376930' coordinate='https://www.google.com/maps/search/?api=1&query=2.9451,101.8761'/>
+            <TailorItem itemImage={require('./image/p4.png')} numbers='0176189165' coordinate='https://www.google.com/maps/search/?api=1&query=2.9451,101.8761'/>
 
 
 

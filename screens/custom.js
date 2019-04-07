@@ -92,7 +92,7 @@ export default class Custom extends React.Component {
 
        <TouchableOpacity activeOpacity={0.8} onPress={this.handleSubmit}>
             
-            <Image source={require('./image/select4.png')}  style={styles.img}/>
+            <Image source={require('./image/add2cart.png')}  style={styles.img}/>
 
        </TouchableOpacity>
 
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
 
 
     img:{
-    width: Dimensions.get('window').width*0.45,
+    width: Dimensions.get('window').width*0.5,
       height:hp('10%'),
     },
 

@@ -7,8 +7,16 @@ import * as firebase from 'firebase';
 
 /***************************class ShoppingBag*************************************/
 export default class ShoppingBag extends React.Component {
-  static navigationOptions = {
-      title: 'Cart   ',
+   static navigationOptions = {
+          title: 'Cart     ',
+          tabBarIcon:({tintColor}) =>(
+        <View style={{paddingRight:5,paddingTop:2}}>
+ 
+          <Image source={require('./image/cart.png')}
+            style={{width:23,height:23,tintColor:'white'}}>
+            </Image>
+        </View>
+        )
   };
     //default constructor for class ShoppingBag
     constructor (){

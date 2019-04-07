@@ -43,6 +43,7 @@ export default class ShoppingBag extends React.Component {
         itemCount += 1; 
         totalPrice += child.val().Price; 
     });
+     totalPrice = totalPrice.toFixed(2);
   this.setState({
   dataSource : ShoppingBag
  });
@@ -53,7 +54,8 @@ export default class ShoppingBag extends React.Component {
   //function renderSeperator - will show a line, in this class it is used to seperate each items on the list
     renderItem = ({item}) => {
       const size = this.props.navigation.getParam('size', '');
-      var itemprice = item.Price;  
+      var itemprice = item.Price;
+      itemprice = itemprice.toFixed(2); 
       var uniqueKey = item.uniqueKey;  
       return(
         <View style ={{flex: 1, flexDirection: 'row', marginBottom: 3}}>
@@ -67,7 +69,7 @@ export default class ShoppingBag extends React.Component {
                 {item.name}
               </Text>
               <Text style  = {{fontSize: 14, color: 'red', marginBottom: 15}}>
-                RM {item.Price}
+                RM {itemprice}
               </Text>
               <Text style  = {{fontSize: 14, color: 'black'}}>
                 Size : {item.Size} 

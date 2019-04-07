@@ -27,20 +27,9 @@ constructor (props){
     loading : false,
     loggedIn : null,
     currentUser : null,
-    userName : '',
-    userMail : '',
-    userCard : ''
-  })
-  super (props)
-
-  this.state = ({
-    email : '',
-    password : '',
-    currentemail:'',
-    error :'',
-    loading : false,
-    loggedIn : null,
-    currentUser : null,
+    userName : ' ',
+    userMail : ' ',
+    userCard : ' '
   })
 }
 
@@ -55,11 +44,18 @@ firebase.auth().onAuthStateChanged((user) => {
      .once('value', snapshot =>{
    var items = {};
    items = snapshot.val();
+   if (items !=null && items.fullName != null){
    this.setState({
   userName : items.fullName,
+  });}
+  if (items !=null && items.mailingAddress != null){
+   this.setState({
   userMail : items.mailingAddress,
-  userCard : items.cardNo
-  });
+  });}
+  if (items !=null && items.cardNo != null){
+   this.setState({
+  userCard : items.cardNo,
+  });}
    console.log(this.state.userName);
     });
       } else {
@@ -88,15 +84,49 @@ signOutUser = () => {
       .then(() => this.setState({ loggedIn:false}))
 }
 
+renderFullName(){
+	if (this.state.userName != ' ')
+	return (
+	<Text style = {styles.container}>
+	Full name : {this.state.userName}{"\n"}
+	</Text>
+	);
+	else
+	return (
+	<Text style = {styles.container}>
+	Full name : PLEASE SET YOUR NAME{"\n"}
+	</Text>
+	);
+}
+
+renderMail(){
+	if (this.state.userMail != ' ')
+	return (
+	<Text style = {styles.container}>
+	Mailing Address : {this.state.userMail}{"\n"}
+	</Text>
+	);
+	else
+	return (
+	<Text style = {styles.container}>
+	Mailing Address : PLEASE SET YOUR ADDRESS{"\n"}
+	</Text>
+	);
+}
+
+
 renderUser(){
 const {currentUser} = this.state;
 if (currentUser != null){
+
 return(
- <Text style = {styles.container}> 
+<View style = {styles.container}>
+	<Text style = {styles.container}> 
       Hi {currentUser && currentUser.email} {"\n"}
-      Full name : {this.state.userName}{"\n"}
-      Mailing address : {this.state.userMail}{"\n"}
-      </Text> )
+	  </Text>
+      {this.renderFullName()}
+      {this.renderMail()}
+ </View>      )
       }
 else
 {
@@ -120,7 +150,7 @@ else
 
 
       <View style={styles.user}>
-        <Image source={require('./image/user3.3.png')}  style={styles.btn2}/>
+        <Image source={require('./image/user.png')}  style={styles.btn2}/>
       </View>
 
 
@@ -149,7 +179,7 @@ else
 
 
         <View style={styles.button}>
-          <TouchableOpacity activeOpacity={1}  onPress={() => this.props.navigation.navigate('Modalstack',{
+          <TouchableOpacity activeOpacity={1}  onPress={() => this.props.navigation.navigate('AddressModal',{
             name:this.state.userName,
             mail:this.state.userMail,
             card:this.state.userCard,

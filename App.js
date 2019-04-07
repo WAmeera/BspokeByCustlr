@@ -1,6 +1,6 @@
 import React from 'react';
-import { Image,ScrollView,View, Text, Button, StyleSheet } from 'react-native';
-import { createAppContainer, createStackNavigator, StackActions, NavigationActions,createDrawerNavigator, createSwitchNavigator } from 'react-navigation'; // Version can be specified in package.json
+import { Dimensions,Image,ScrollView,View, Text, Button, StyleSheet } from 'react-native';
+import {createBottomTabNavigator,createAppContainer, createStackNavigator, StackActions, NavigationActions,createDrawerNavigator, createSwitchNavigator } from 'react-navigation'; // Version can be specified in package.json
 import Items from './components/items';
 import HomeScreen from './screens/home';
 import DetailsScreen from './screens/details';
@@ -29,6 +29,8 @@ import MenuDrawer from './components/MenuDrawer';
 import * as firebase from 'firebase';
 import AddressModal from './screens/AddressModal';
 import LoginForm from './src/components/LoginForm';
+import TextSearch from './screens/TextSearch';
+
 //connect to database
 var config = {
     apiKey: "AIzaSyB5abld-pkUYqwM8SCSzzqjRO171JPsLDU",
@@ -86,8 +88,6 @@ const DrawerNavigator = createDrawerNavigator(
 {
 	Home:{
 	screen:HomeScreen,},
-	Modalstack: {
-    screen: Modalstack,},
 	AddressModal :{
 	screen : AddressModal,},
 },
@@ -101,9 +101,42 @@ const RegisterNavigator = createSwitchNavigator({
 	Login: {
 		screen:Login,
 	},
+	Modalstack: {
+    screen: Modalstack,
+	},
   },);
 
+
+
+const DashboardTabNavigator = createBottomTabNavigator({
+  HomeScreen,
+  ShoppingBag,  
+  Recommendation,
+  Search:{
+    screen:TextSearch
+  },
+},
+{ 
+    tabBarOptions: {
+      activeTintColor: '#a54c4c',
+      inactiveTintColor: 'white',
+
+        style: {
+          backgroundColor: '#606060',
+        },
+        labelStyle: {
+          fontSize: 12,
+          paddingLeft:2
+        },
+    },
+}
+
+)
+
 const AppNavigator = createStackNavigator({   //control everything
+TextSearch :{
+	screen: TextSearch,
+},
 LoginForm :{
 	screen: LoginForm,
 },
@@ -116,9 +149,14 @@ Recommendation:{
   DrawerNavigator: {
     screen: DrawerNavigator,
   },
-  Home:{
-  	screen: HomeScreen,
+  Dashboard:{
+  	screen: DashboardTabNavigator,
   },
+    Home:{
+    screen: HomeScreen,
+  },
+  
+
   Details: {
     screen: DetailsScreen,
   }, 
@@ -198,6 +236,12 @@ Recommendation:{
     },
 }
 );
+
+
+
+
+
+
 
 
 

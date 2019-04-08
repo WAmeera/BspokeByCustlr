@@ -15,26 +15,34 @@ export default class AddressModal extends React.Component {
 	loading: false
 	};
   }
-
+   
   componentWillMount(){
   this.setState({loading:false});
+  
   }
 
   saveInfo = (fullName , mailingAddress,cardNo) =>{
-  const name = this.props.navigation.getParam('name', '');
-  const card = this.props.navigation.getParam('card','');
-  const mail = this.props.navigation.getParam('mail', '');
+  
   const { currentUser } = firebase.auth();
   this.setState({loading:true});
   if (this.state.name != ''){
+  const name = this.props.navigation.getParam('name', ' ');
+  const card = this.props.navigation.getParam('card',' ');
+  const mail = this.props.navigation.getParam('mail', ' ');
 	firebase.database().ref(`/users/${currentUser.uid}/info`)
       .set({ fullName : fullName, mailingAddress : mail , cardNo : card})
 	  }
   if (this.state.mail != ''){
+  const name = this.props.navigation.getParam('name', ' ');
+  const card = this.props.navigation.getParam('card',' ');
+  const mail = this.props.navigation.getParam('mail', ' ');
 	firebase.database().ref(`/users/${currentUser.uid}/info`)
       .set({ fullName : name, mailingAddress : mailingAddress , cardNo : card })
 	  }
   if (this.state.card != ''){
+  const name = this.props.navigation.getParam('name', ' ');
+  const card = this.props.navigation.getParam('card',' ');
+  const mail = this.props.navigation.getParam('mail', ' ');
 	firebase.database().ref(`/users/${currentUser.uid}/info`)
       .set({ fullName : name, mailingAddress : mail , cardNo : cardNo })
 	  }
@@ -45,6 +53,7 @@ export default class AddressModal extends React.Component {
   const name = this.props.navigation.getParam('name', '');
   const card = this.props.navigation.getParam('card','');
   const mail = this.props.navigation.getParam('mail', '');
+  console.log(mail);
 
   if (this.state.loading == false){
     return (

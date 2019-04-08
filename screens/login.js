@@ -27,20 +27,9 @@ constructor (props){
     loading : false,
     loggedIn : null,
     currentUser : null,
-    userName : '',
-    userMail : '',
-    userCard : ''
-  })
-  super (props)
-
-  this.state = ({
-    email : '',
-    password : '',
-    currentemail:'',
-    error :'',
-    loading : false,
-    loggedIn : null,
-    currentUser : null,
+    userName : ' ',
+    userMail : ' ',
+    userCard : ' '
   })
 }
 
@@ -55,15 +44,15 @@ firebase.auth().onAuthStateChanged((user) => {
      .once('value', snapshot =>{
    var items = {};
    items = snapshot.val();
-   if (items.fullName != null){
+   if (items !=null && items.fullName != null){
    this.setState({
   userName : items.fullName,
   });}
-  if (items.mailingAddress != null){
+  if (items !=null && items.mailingAddress != null){
    this.setState({
   userMail : items.mailingAddress,
   });}
-  if (items.cardNo != null){
+  if (items !=null && items.cardNo != null){
    this.setState({
   userCard : items.cardNo,
   });}
@@ -96,7 +85,7 @@ signOutUser = () => {
 }
 
 renderFullName(){
-	if (this.state.userName != null)
+	if (this.state.userName != ' ')
 	return (
 	<Text style = {styles.container}>
 	Full name : {this.state.userName}{"\n"}
@@ -111,7 +100,7 @@ renderFullName(){
 }
 
 renderMail(){
-	if (this.state.userMail != null)
+	if (this.state.userMail != ' ')
 	return (
 	<Text style = {styles.container}>
 	Mailing Address : {this.state.userMail}{"\n"}

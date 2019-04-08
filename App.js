@@ -75,7 +75,14 @@ const DrawerConfig = {
 		return(<MenuDrawer navigation ={navigation}/>)
 	}
 }
-
+const Modalstack = createStackNavigator(
+{
+	AddressModal :{
+		screen : AddressModal,
+	}
+},
+{mode : 'modal',
+});
 
 const DrawerNavigator = createDrawerNavigator(
 {
@@ -94,8 +101,8 @@ const RegisterNavigator = createSwitchNavigator({
 	Login: {
 		screen:Login,
 	},
-	AddressModal :{
-	screen : AddressModal,
+	Modalstack: {
+    screen: Modalstack,
 	},
   },);
 

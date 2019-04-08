@@ -29,6 +29,7 @@ async getCategoryKey(key) {
       const value = await AsyncStorage.getItem(key);
 	  if (value != null)
 	  this.setState({categoryArray: value});
+	  console.log(value);
 	  await AsyncStorage.setItem(key, this.state.categoryArray);
     } catch (error) {
       console.log("Error retrieving data" + error);
@@ -40,6 +41,7 @@ async getColorKey(key) {
       const value = await AsyncStorage.getItem(key);
 	  if (value != null)
 	  this.setState({colorArray: value});
+	  console.log(value);
 	  await AsyncStorage.setItem(key, this.state.colorArray);
     } catch (error) {
       console.log("Error retrieving data" + error);
@@ -86,6 +88,9 @@ renderItem = ({item}) => {
 			category={item.category}
 			Price ={item.Price}
 			color = {item.color}
+      brand = {item.brand}
+      name = {item.name}
+      Photo1 = {item.Photo1}
 			>
              <Text style  = {{fontSize: 16, color: 'black'}}>
                 {item.brand}
@@ -116,6 +121,7 @@ this.props.navigation.navigate('Recommendation');
            data = {this.state.dataSource.filter(items => (items.category == "Slim Fit"))}
             renderItem = {this.renderItem}
           />
+			<Button onPress={this.Gotorecom} title ="Recommendation"/>
 		
     </View>
     );

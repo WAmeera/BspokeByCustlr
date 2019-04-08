@@ -37,7 +37,7 @@ export default class TailorItem extends React.Component {
 
                     <View style={styles.button}>
                         
-                        <TouchableOpacity activeOpacity={0.8} onPress={this._handleOpenWithLinking}>
+                        <TouchableOpacity activeOpacity={0.8} onPress={() => Communications.phonecall(this.props.numbers, true)}>
                            <Image source={require('./image/call.png')}  style={styles.img}/>
                         </TouchableOpacity>
                    

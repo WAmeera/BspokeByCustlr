@@ -51,22 +51,12 @@ firebase.auth().onAuthStateChanged((user) => {
     return (
 <View style ={{ height:100, width:360, alignItems: 'center'}}>
 
-    <View style={styles.button}>
-
+  <View style={styles.button}>
 
      <TouchableOpacity activeOpacity={1} onPress={this.handleLogin} >
        
         <Image source={require('./login.png')}  style={styles.btn}/>
       </TouchableOpacity>
-
-
-
-
-
-
-
-
-
 
    </View>
 

@@ -4,7 +4,7 @@ import { createAppContainer, createStackNavigator, StackActions, NavigationActio
 import t from 'tcomb-form-native'; // 0.6.9
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
+import * as firebase from 'firebase';
 
 
 
@@ -18,6 +18,35 @@ export default class Payment3 extends React.Component {
     static navigationOptions = {
       title: 'Payment           ',
   };
+
+  constructor (){
+      super()
+      this.state = {
+        dataSource : [],
+        isLoading: true,
+		currentUser : null
+      }
+    }
+  
+  componentWillMount (){
+  firebase.auth().onAuthStateChanged((user) => {
+   global.itemCount = 0;  
+   global.totalPrice = 0; 
+    const { currentUser } = firebase.auth();
+    this.setState ({currentUser});
+    const currentUser2 = this.state.currentUser;
+  firebase.database().ref(`ShoppingBag/${currentUser2.uid}/cart/`).once('value', snapshot =>{
+   
+     snapshot.forEach((child) => {
+	   firebase.database().ref(`Shipping/${currentUser2.uid}/`)
+      .push({ item : child.val() });
+
+	  firebase.database().ref(`ShoppingBag/${currentUser2.uid}/`).remove();
+        itemCount += 1; 
+        totalPrice += child.val().Price; 
+    });
+ });
+ })};
 
 
   handleSubmit = () => {

@@ -187,7 +187,14 @@ else
             <Image source={require('./image/changeInfo.png')}  style={styles.btn}/>
           </TouchableOpacity>
    
-  </View>        
+  </View> 
+  
+		<View style={styles.button}>
+          <TouchableOpacity activeOpacity={1} onPress={() => this.props.navigation.navigate('Shipment')} >
+            <Text source={require('./image/changeInfo.png')}  style={styles.btn}/>
+          </TouchableOpacity>
+		
+  </View>   
 
       </View>
      </View>

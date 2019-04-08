@@ -225,6 +225,9 @@ renderItem = ({item}) => {
 			category={item.category}
 			Price ={item.Price}
 			color = {item.color}
+			brand = {item.brand}
+			name = {item.name}
+			Photo1 = {item.Photo1}
 			>
              <Text style  = {{fontSize: 16, color: 'black'}}>
                 {item.brand}

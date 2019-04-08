@@ -23,14 +23,20 @@ export default class ShoppingBag extends React.Component {
       super()
       this.state = {
         dataSource : [],
-        isLoading: true
+        isLoading: true,
+		currentUser : null
       }
     }
   
   componentWillMount (){
    global.itemCount = 0;  
    global.totalPrice = 0; 
-  firebase.database().ref('ShoppingBag').once('value', snapshot =>{
+  firebase.auth().onAuthStateChanged((user) => {
+   const { currentUser } = firebase.auth();
+    this.setState ({currentUser});
+    const currentUser2 = this.state.currentUser;
+  
+  firebase.database().ref(`ShoppingBag/${currentUser2.uid}/cart/`).once('value', snapshot =>{
    var ShoppingBag = [];
      snapshot.forEach((child) => {
        ShoppingBag.push({
@@ -47,6 +53,7 @@ export default class ShoppingBag extends React.Component {
           chest: child.val().chest,
           sleeve: child.val().sleeve,
           uniqueKey: child.key,
+		  
        });
         itemCount += 1; 
         totalPrice += child.val().Price; 
@@ -55,7 +62,7 @@ export default class ShoppingBag extends React.Component {
   dataSource : ShoppingBag
  });
  });
- };
+ })};
 
   //function renderItem - will show the informations fetched from the database to the user-end (the shopping bag list)
   //function renderSeperator - will show a line, in this class it is used to seperate each items on the list
@@ -93,9 +100,10 @@ export default class ShoppingBag extends React.Component {
     }
 
     deleteData  = (key, price)  => { 
+	const currentUser2 = this.state.currentUser;
       totalPrice -= price;  
       itemCount -= 1;
-      firebase.database().ref('ShoppingBag').child(key).remove();
+      firebase.database().ref(`ShoppingBag/${currentUser2.uid}/cart/`).child(key).remove();
       this.onDelete();
     }
 

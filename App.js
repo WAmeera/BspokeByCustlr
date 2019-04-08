@@ -30,7 +30,8 @@ import * as firebase from 'firebase';
 import AddressModal from './screens/AddressModal';
 import LoginForm from './src/components/LoginForm';
 import TextSearch from './screens/TextSearch';
-
+import Shipment from './screens/shipment';
+import statusModal from './screens/statusModal';
 //connect to database
 var config = {
     apiKey: "AIzaSyB5abld-pkUYqwM8SCSzzqjRO171JPsLDU",
@@ -134,6 +135,12 @@ const DashboardTabNavigator = createBottomTabNavigator({
 )
 
 const AppNavigator = createStackNavigator({   //control everything
+statusModal :{
+	screen: statusModal,
+},
+Shipment :{
+	screen: Shipment,
+},
 TextSearch :{
 	screen: TextSearch,
 },

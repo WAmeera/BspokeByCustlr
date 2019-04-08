@@ -9,11 +9,18 @@ import * as firebase from 'firebase';
 export default class Size extends React.Component {
 
   state = {
-    size : 'unspecified'
+    size : 'unspecified',
+	currentUser : null
   }
   static navigationOptions = {
           title: 'Standard Size     ',
   };
+  componentWillMount (){
+   firebase.auth().onAuthStateChanged((user) => {
+   const { currentUser } = firebase.auth();
+    this.setState ({currentUser});
+	})
+	};
   render() {
      const {navigate} = this.props.navigation;
      const itemID = this.props.navigation.getParam('itemID',0);
@@ -22,17 +29,21 @@ export default class Size extends React.Component {
       const brand = this.props.navigation.getParam('brand','x');
       const name = this.props.navigation.getParam('name','x');
       const Photo1 = this.props.navigation.getParam('Photo1','x');
+	  const Shipment = 'CURRENTLY IN WAREHOUSE';
     const Quantity = 1;
     const collar = 0;
     const shoulder = 0;
     const chest = 0;
     const sleeve = 0;
    
-
+   
+  
     onButtonPress =  (size, collar, shoulder, chest, sleeve) => {
+	 
+    const currentUser2 = this.state.currentUser;
       navigate('ShoppingBag',{ size : size});
      
-          firebase.database().ref('ShoppingBag/').push({
+          firebase.database().ref(`ShoppingBag/${currentUser2.uid}/cart/`).push({
               itemID,
               Price,
               category,
@@ -44,7 +55,8 @@ export default class Size extends React.Component {
               shoulder,
               chest,
               sleeve,
-              size
+              size,
+			  Shipment,
          });//.then((data)=>{console.log('data ' , data)
           //}).catch((error)=>{console.log('error ' , error)})
     }

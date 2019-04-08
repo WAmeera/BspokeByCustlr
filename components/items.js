@@ -8,10 +8,6 @@ export default class Items extends React.Component {
     render(){
         return(
             <View style = {styles.menuItem}>
-
-
-
-
                 <View style = {styles.menuItem}>
                     <TouchableOpacity activeOpacity={1} style={styles.buttonContainer} onPress={() => 
 					this.props.navigation.navigate('Details',

@@ -1,11 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\components",
     "\\screens",
     "\\src",
     "\\src\\components",
     "\\src\\components\\common"
   ],
-  "SelectedNode": "\\screens\\AddressModal.js",
+  "SelectedNode": "\\screens\\catalogue.js",
   "PreviewInSolutionExplorer": false
 }

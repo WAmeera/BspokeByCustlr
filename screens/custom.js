@@ -1,39 +1,67 @@
-import React from 'react';
-import {Dimensions,TouchableOpacity,StyleSheet, Button, Text, View, Image} from 'react-native';
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  Text,
+  Image,
+  View,
+  Button,
+  StyleSheet,
+  TextInput,
+  Linking,
+  Alert,
+  Navigator,
+  Dimensions,TouchableOpacity
+} from 'react-native';
+import t from 'tcomb-form-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
-import t from 'tcomb-form-native'; // 0.6.9
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import * as firebase from 'firebase';
-
-//const {navigate} = this.props.navigation;
-/*const itemID = this.props.navigation.getParam('itemID',0);
-      const Price = this.props.navigation.getParam('Price',0);
-      const category = this.props.navigation.getParam('category', 'x'); 
-      const brand = this.props.navigation.getParam('brand','x');
-      const name = this.props.navigation.getParam('name','x');
-      const Photo1 = this.props.navigation.getParam('Photo1','x');
-      const Quantity = 1;
-      const size = "Custom";*/
-
 const Form = t.form.Form;
 
-const User = t.struct({
+// here we are: define your domain model
+
+
+const LoginFields = t.struct({
   Collar: t.Number,
   Shoulder: t.Number,
   Chest: t.Number,
   Sleeve: t.Number,
+});
 
-}); 
+const options = {
+  fields: {
+    password: {
+      type: 'password',
+      placeholder: 'Password',
+      error: 'Password cannot be empty'
+    },
+    username: {
+      placeholder: 'e.g: abc@gmail.com',
+      error: 'Insert a valid email'
+    }
+  }
+}; // optional rendering options (see documentation)
 
-export default class Custom extends React.Component {
 
-    static navigationOptions = {
-      title: 'Measurements       ',
-  };
+export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      buttonState: true,
+      value: {}
+    }
+  }
 
-  handleSubmit = () => {
-    const value = this._form.getValue(); // use that ref to get the form value
-    this.props.navigation.navigate('ShoppingBag');
+    componentWillMount (){
+   firebase.auth().onAuthStateChanged((user) => {
+   const { currentUser } = firebase.auth();
+    this.setState ({currentUser});
+	})
+	};
+
+  _onSubmit() {
+    const value = this.refs.form.getValue();
+   
     console.log('value: ', value);
     //this.onButtonPress();
     const {navigate} = this.props.navigation;
@@ -49,8 +77,15 @@ export default class Custom extends React.Component {
       const shoulder = value.Shoulder;
       const chest = value.Chest;
       const sleeve = value.Sleeve;
+	    const Shipment = 'CURRENTLY IN WAREHOUSE';
+	  const resetAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'ShoppingBag' })],
+});
+   
 
-          firebase.database().ref('ShoppingBag/').push({
+	 const currentUser2 = this.state.currentUser;
+          firebase.database().ref(`ShoppingBag/${currentUser2.uid}/cart/`).push({
               itemID,
               Price,
               category,
@@ -62,10 +97,23 @@ export default class Custom extends React.Component {
               shoulder,
               chest,
               sleeve,
-              size
+              size,
+			  Shipment
          });
+
+    this.props.navigation.dispatch(resetAction);
+	 this.props.navigation.navigate('ShoppingBag');
   }
 
+  onChange = () => {
+    const value = this.refs.form.getValue();
+    if(value) {
+      this.setState({
+        value,
+        buttonState: false
+      });
+    }
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -83,18 +131,24 @@ export default class Custom extends React.Component {
 
 
         <View style={styles.form}>
-            <Form type={User}
-                ref={c => this._form = c}  />
+           <Form
+              ref="form"
+              type={LoginFields}
+              value={this.state.value}
+              onChange={this.onChange}
+            />
 
         </View>
 
       <View style ={styles.buttonContainer}>
 
-       <TouchableOpacity activeOpacity={0.8} onPress={this.handleSubmit}>
-            
-            <Image source={require('./image/add2cart.png')}  style={styles.img}/>
-
-       </TouchableOpacity>
+       <Button
+                  onPress={this._onSubmit.bind(this)}
+                  title="Login"
+                  color="#008080"
+                  disabled={this.state.buttonState}
+                  accessibilityLabel="Ok, Great!"
+                />
 
       </View>
 
@@ -103,9 +157,19 @@ export default class Custom extends React.Component {
 
         
       </View>
+
+
+
+
+
+
+
+
+
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -148,7 +212,7 @@ const styles = StyleSheet.create({
   },
 
     button:{
-    width:wp('40%'),   
+    width:wp('70%'),   
     
   },
 

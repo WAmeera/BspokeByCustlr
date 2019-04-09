@@ -134,7 +134,11 @@ const DashboardTabNavigator = createBottomTabNavigator({
 
 )
 
+
 const AppNavigator = createStackNavigator({   //control everything
+DashboardTabNavigator:{
+	screen: DashboardTabNavigator,
+},
 statusModal :{
 	screen: statusModal,
 },
@@ -182,9 +186,6 @@ Recommendation:{
   Payment3:{
     screen: Payment3,
   },
-    Intro:{
-    screen: Intro,
-  },
     Options:{
     screen: Options,
   },
@@ -231,8 +232,33 @@ Recommendation:{
   
 }, 
 {
-    initialRouteName: 'Intro',
+    initialRouteName: 'Login',
     defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#003061',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
+}
+);
+
+
+
+
+const StartNavigator = createSwitchNavigator({
+Intro:{
+    screen: Intro,
+  },
+AppNavigator:{
+	screen: AppNavigator,
+},
+},
+{
+	initialRouteName : 'Intro',
+	defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#003061',
       },
@@ -251,8 +277,4 @@ Recommendation:{
 
 
 
-
-
-
-
-export default createAppContainer(AppNavigator);    //call the class
+export default createAppContainer(StartNavigator);    //call the class

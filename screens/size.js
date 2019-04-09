@@ -35,13 +35,17 @@ export default class Size extends React.Component {
     const shoulder = 0;
     const chest = 0;
     const sleeve = 0;
+	const resetAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'DashboardTabNavigator' })],
+});
    
    
   
     onButtonPress =  (size, collar, shoulder, chest, sleeve) => {
 	 
     const currentUser2 = this.state.currentUser;
-      navigate('ShoppingBag',{ size : size});
+      
      
           firebase.database().ref(`ShoppingBag/${currentUser2.uid}/cart/`).push({
               itemID,
@@ -59,6 +63,8 @@ export default class Size extends React.Component {
 			  Shipment,
          });//.then((data)=>{console.log('data ' , data)
           //}).catch((error)=>{console.log('error ' , error)})
+		  this.props.navigation.dispatch(resetAction);
+		  navigate('ShoppingBag',{ size : size });
     }
 
     return (

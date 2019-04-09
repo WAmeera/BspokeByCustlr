@@ -118,8 +118,14 @@ export default class ShoppingBag extends React.Component {
         </View>
       )
     }
-
-
+	
+	submit(){
+	console.log (this.state.dataSource);
+	if (this.state.dataSource.length=== 0)
+	alert ("Purchase something before you checkout!");
+	else
+	this.props.navigation.navigate('Payment1');
+	}
 
     render () {
       return (
@@ -146,7 +152,7 @@ export default class ShoppingBag extends React.Component {
               <View style={{ backgroundColor: 'black'}}>
                 <Text></Text>
                 <Text></Text>
-                <Button title="Checkout" color= "black" onPress={() => this.props.navigation.navigate('Payment1')}/>
+                <Button title="Checkout" color= "black" onPress={() => this.submit()}/>
                 <Text></Text>
                 <Text></Text>
               </View>

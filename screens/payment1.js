@@ -1,33 +1,83 @@
-import React from 'react';
-import {Dimensions,TouchableOpacity,StyleSheet, Button, Text, View, Image} from 'react-native';
-import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
-import t from 'tcomb-form-native'; // 0.6.9
+import React, { Component } from 'react';
+import {
+  Dimensions,
+  TouchableOpacity,
+  AppRegistry,
+  Text,
+  Image,
+  View,
+  Button,
+  StyleSheet,
+  TextInput,
+  Linking,
+  Alert,
+  Navigator
+} from 'react-native';
+import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
+import t from 'tcomb-form-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 const Form = t.form.Form;
 
-const User = t.struct({
+// here we are: define your domain model
+
+
+const LoginFields = t.struct({
   address: t.String,
-  
-}); 
+ 
+});
 
-export default class Payment1 extends React.Component {
+const options = {
+  fields: {
 
-    static navigationOptions = {
+    address: {
+      error: 'Insert address'
+    }
+  }
+}; // optional rendering options (see documentation)
+
+
+export default class Login extends Component {
+
+  static navigationOptions = {
       title: 'Payment       ',
   };
 
-  handleSubmit = () => {
-    const value = this._form.getValue(); // use that ref to get the form value
-    this.props.navigation.navigate('Payment2');
-    console.log('value: ', value);
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      buttonState: true,
+      value: {}
+    }
   }
 
-  render() {
-    
+  _onSubmit() {
+    const value = this.refs.form.getValue();
+     if (value) { // if validation fails, value will be null
+        // value here is an instance of LoginFields
+     }
 
+      this.props.navigation.navigate('Payment2');
+
+  }
+
+  onChange = () => {
+    const value = this.refs.form.getValue();
+    if(value) {
+      this.setState({
+        value,
+        buttonState: false
+      });
+    }
+  }
+  render() {
     return (
-      <View style={styles.container}>
+
+
+
+ <View style={styles.container}>
       
 
          <View style={styles.infoContainer}>
@@ -42,26 +92,46 @@ export default class Payment1 extends React.Component {
 
            <View style={styles.form}>
 
-            <Form type={User}
-            ref={c => this._form = c}  />
+             <Form
+              ref="form"
+              type={LoginFields}
+              options={options}
+              value={this.state.value}
+              onChange={this.onChange}
+            />
 
             </View>
 
-           <View style={styles.button}>
+            <View style={styles.button}>
 
-                 <TouchableOpacity activeOpacity={0.8} onPress={this.handleSubmit} >
+                 <TouchableOpacity activeOpacity={0.8} onPress={this._onSubmit.bind(this)}
+                  title="Login"
+                  disabled={this.state.buttonState}
+                  accessibilityLabel="Ok, Great!" >
 
-              <View style={styles.buttonContainer}>
+                  <View style={styles.buttonContainer}>
             
                     <Image source={require('./image/select4.png')}  style={styles.img}/>
 
-              </View>
+                  </View>
                 </TouchableOpacity>
 
           </View>
         </View>
 
       </View>
+
+
+
+
+
+
+
+
+
+ 
+
+
     );
   }
 }

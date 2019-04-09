@@ -13,17 +13,18 @@ export default class DetailsScreen extends React.Component{
 
   render(){
        const {navigate} = this.props.navigation;
-       const customImg = [
-       "https://firebasestorage.googleapis.com/v0/b/lotapp-9e84d.appspot.com/o/aster.jpg?alt=media&token=166e66b0-9c8e-4803-918e-25762c58dbda",
-      "https://firebasestorage.googleapis.com/v0/b/lotapp-9e84d.appspot.com/o/fan.jpg?alt=media&token=b419d507-9de8-4c4c-97e3-6b4eb2202e68",
-      "https://firebasestorage.googleapis.com/v0/b/lotapp-9e84d.appspot.com/o/stone.jpg?alt=media&token=e9d41537-7f26-4bfd-86eb-c2ef6fc58a9c"
-      ];
+      
       const itemID = this.props.navigation.getParam('itemID',0);
       const Price = this.props.navigation.getParam('Price',0);
       const category = this.props.navigation.getParam('category','x'); 
       const brand = this.props.navigation.getParam('brand','x');
       const name = this.props.navigation.getParam('name','x');
-      const Photo1 = this.props.navigation.getParam('Photo','x');
+      const Photo1 = this.props.navigation.getParam('Photo1','x');
+	   const customImg = [
+       Photo1,
+      "https://firebasestorage.googleapis.com/v0/b/lotapp-9e84d.appspot.com/o/fan.jpg?alt=media&token=b419d507-9de8-4c4c-97e3-6b4eb2202e68",
+      "https://firebasestorage.googleapis.com/v0/b/lotapp-9e84d.appspot.com/o/stone.jpg?alt=media&token=e9d41537-7f26-4bfd-86eb-c2ef6fc58a9c"
+      ];
     
      senditem = (itemID,Price,category,brand,name,Photo1) => {
       navigate('Options',{ 

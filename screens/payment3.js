@@ -50,8 +50,15 @@ export default class Payment3 extends React.Component {
 
 
   handleSubmit = () => {
+  const resetAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'DashboardTabNavigator' })],
+	});
+   
   //  const value = this._form.getValue(); // use that ref to get the form value
-    this.props.navigation.navigate('Home');
+  this.props.navigation.dispatch(resetAction);
+    this.props.navigation.navigate('Login');
+
     //console.log('value: ', value);
   }
 

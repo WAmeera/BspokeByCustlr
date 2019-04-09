@@ -41,6 +41,7 @@ componentWillMount (){
 		  category : child.val().item.category,
 		  color : child.val().item.color,
 		  Shipment : child.val().item.Shipment,
+		  Photo1 : child.val().item.Photo1,
        });
     });
 	this.setState({
@@ -59,7 +60,7 @@ renderItem = ({item}) => {
                 <View style = {styles.menuItem}>
                     <TouchableOpacity activeOpacity={1} style={styles.buttonContainer} onPress={() => 
 					this.props.navigation.navigate('statusModal',{ Shipment : item.Shipment})} >
-                        <Image source={require('../screens/image/shirt.jpg')}  style={styles.image}/>         
+                        <Image source={{uri:item.Photo1}}  style={styles.image}/>         
                         <Text style  = {{fontSize: 16, color: 'black'}}>
                 {item.brand}
               </Text>

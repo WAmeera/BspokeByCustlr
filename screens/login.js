@@ -12,7 +12,7 @@ import {
 import * as firebase from 'firebase';
 import HomeScreen from '../screens/HomeScreen';
 import LoginForm from '../src/components/LoginForm';
-import { Button, Card, CardSection, Input, Spinner, Header } from '../src/components/common';
+import { Button, Input, Spinner, Header } from '../src/components/common';
 
 export default class Login extends React.Component{
 
@@ -42,7 +42,7 @@ firebase.auth().onAuthStateChanged((user) => {
     const currentUser2 = this.state.currentUser;
   firebase.database().ref(`/users/${currentUser2.uid}/info`)
      .once('value', snapshot =>{
-   var items = {};
+   var items = [];
    items = snapshot.val();
    if (items !=null && items.fullName != null){
    this.setState({
@@ -218,11 +218,11 @@ else
 
   render() {
     return (
-    <ImageBackground source={require('./image/background.jpg')} style={styles.main}>
+   <ImageBackground source={require('./image/background.jpg')} style={styles.main}>
       <View>
         {this.renderContent()}
       </View>
-    </ImageBackground>
+   </ImageBackground>
     );
   }
 }

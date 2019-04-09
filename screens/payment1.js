@@ -16,29 +16,29 @@ import {
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
 import t from 'tcomb-form-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import * as firebase from 'firebase';
+import { Card2, CardSection2, Input, Spinner, Header } from '../src/components/common';
 
-
-const Form = t.form.Form;
 
 // here we are: define your domain model
 
 
-const LoginFields = t.struct({
+/*const LoginFields = t.struct({
   address: t.String,
  
-});
+});*/
 
-const options = {
+/*const options = {
   fields: {
 
-    address: {
+    address: [{
       error: 'Insert address'
-    }
+    }]
   }
-}; // optional rendering options (see documentation)
+}; // optional rendering options (see documentation)*/
 
 
-export default class Login extends Component {
+export default class Payment1 extends React.Component {
 
   static navigationOptions = {
       title: 'Payment       ',
@@ -48,30 +48,31 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      buttonState: true,
-      value: {}
+      buttonState: false,
+      value: '',
     }
   }
+   componentWillMount (){
+   firebase.auth().onAuthStateChanged((user) => {
+   const { currentUser } = firebase.auth();
+    this.setState ({currentUser});
+	})
+	};
 
   _onSubmit() {
-    const value = this.refs.form.getValue();
-     if (value) { // if validation fails, value will be null
-        // value here is an instance of LoginFields
-     }
+	const currentUser = this.state.currentUser;
+	 firebase.database().ref(`/users/${currentUser.uid}/info`)
+      .update({ mailingAddress : this.state.value });
 
+	  if (this.state.value=='')
+	  alert ("The address is empty.");
+	  else
       this.props.navigation.navigate('Payment2');
 
+	  
   }
 
-  onChange = () => {
-    const value = this.refs.form.getValue();
-    if(value) {
-      this.setState({
-        value,
-        buttonState: false
-      });
-    }
-  }
+ 
   render() {
     return (
 
@@ -92,13 +93,18 @@ export default class Login extends Component {
 
            <View style={styles.form}>
 
-             <Form
-              ref="form"
-              type={LoginFields}
-              options={options}
-              value={this.state.value}
-              onChange={this.onChange}
-            />
+             <Card2>
+			 <CardSection2>
+          <Input
+            placeholder="address"
+            label="Address"
+            value={this.state.value}
+            onChangeText={value => this.setState({ value })}
+          />
+
+
+        </CardSection2>	
+			 </Card2>
 
             </View>
 

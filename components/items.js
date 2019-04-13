@@ -8,12 +8,19 @@ export default class Items extends React.Component {
     render(){
         return(
             <View style = {styles.menuItem}>
-
-
-
-
                 <View style = {styles.menuItem}>
-                    <TouchableOpacity activeOpacity={1} style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Details')} >
+                    <TouchableOpacity activeOpacity={1} style={styles.buttonContainer} onPress={() => 
+					this.props.navigation.navigate('Details',
+					{
+					itemID:this.props.itemID,
+					category:this.props.category,
+					Price :this.props.Price,
+					color :this.props.color,
+					brand : this.props.brand,
+					name : this.props.name,
+					Photo1: this.props.Photo1
+					}
+					)} >
                         <Image source={this.props.itemImage}  style={styles.image}/>         
                         {this.props.children}
                     </TouchableOpacity>

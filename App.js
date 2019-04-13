@@ -32,6 +32,24 @@ import LoginForm from './src/components/LoginForm';
 import TextSearch from './screens/TextSearch';
 import Shipment from './screens/shipment';
 import statusModal from './screens/statusModal';
+import normaltopseller from './normal-topseller';  ///
+import normalfeatured from './normal-featured'; 
+import normallatest from './normal-latest'; 
+import normal0to100 from './normal-0-100'; 
+import normal100to200 from './normal-100-200'; 
+import normal200above from './normal-above200'; 
+import muscletopseller from './muscle-topseller';  ///
+import musclefeatured from './muscle-featured'; 
+import musclelatest from './muscle-latest'; 
+import muscle0to100 from './muscle-0-100'; 
+import muscle100to200 from './muscle-100-200'; 
+import muscle200above from './muscle-above200'; 
+import slimtopseller from './slim-topseller';  ///
+import slimfeatured from './slim-featured'; 
+import slimlatest from './slim-latest'; 
+import slim0to100 from './slim-0-100'; 
+import slim100to200 from './slim-100-200'; 
+import slim200above from './slim-above200'; 
 //connect to database
 var config = {
     apiKey: "AIzaSyB5abld-pkUYqwM8SCSzzqjRO171JPsLDU",
@@ -226,6 +244,77 @@ Recommendation:{
   },
         Tailor4:{
     screen: Tailor4,
+  },
+   normaltopseller : {
+    screen: normaltopseller,
+  },
+
+  normalfeatured : {
+    screen: normalfeatured,
+  },
+
+  normallatest : {
+    screen: normallatest,
+  },
+
+  normal0to100 : {
+    screen: normal0to100,
+  },
+
+  normal100to200 : {
+    screen: normal100to200,
+  },
+
+  normal200above : {
+    screen: normal200above,
+  },
+
+  muscletopseller : {
+    screen: muscletopseller,
+  },
+
+  musclefeatured : {
+    screen: musclefeatured,
+  },
+
+  musclelatest : {
+    screen: musclelatest,
+  },
+
+  muscle0to100 : {
+    screen: muscle0to100,
+  },
+
+  muscle100to200 : {
+    screen: muscle100to200,
+  },
+
+ muscle200above : {
+    screen: muscle200above,
+  },
+  /////
+  slimtopseller : {
+    screen: slimtopseller,
+  },
+
+  slimfeatured : {
+    screen: slimfeatured,
+  },
+
+  slimlatest : {
+    screen: slimlatest,
+  },
+
+  slim0to100 : {
+    screen: slim0to100,
+  },
+
+  slim100to200 : {
+    screen: slim100to200,
+  },
+
+ slim200above : {
+    screen: slim200above,
   },
   
   

@@ -6,11 +6,47 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import {Component} from 'react';
 import {AppRegistr,FlatList,ListView, ActivityIndicator,Divider, StatusBar} from 'react-native';
 import * as firebase from 'firebase';
+import CustomMenu from './components/normal-custommenu';
+import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 
-
-export default class SlimFit extends React.Component {
-    static navigationOptions = {
-      title: 'Muscle Fit       ',
+export default class MuscleFit extends React.Component {
+    static navigationOptions = ({navigation}) => {
+      return{
+      title: navigation.getParam('Title', 'Muscle Fit'),
+      headerRight: (
+       <CustomMenu
+          menutext="All"
+          menustyle={{
+            marginRight: 16,
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+          }}
+          textStyle={{
+            color: 'white',
+          }}
+          option1Click={() => {
+            navigation.navigate('Muscle');
+          }}
+          option2Click={() => {
+            navigation.navigate('muscletopseller');
+          }}
+          option3Click={() => {
+            navigation.navigate('musclefeatured');
+          }}
+          option4Click={() => {
+            navigation.navigate('musclelatest');
+          }}
+           option5Click={() => {
+            navigation.navigate('muscle0to100');
+          }}
+           option6Click={() => {
+            navigation.navigate('muscle100to200');
+          }}
+           option7Click={() => {
+            navigation.navigate('muscle200above');
+          }}
+        />),
+     };
 
   };
 
@@ -19,18 +55,18 @@ constructor (){
       this.state = {
         dataSource : [],
         isLoading: true,
-		categoryArray : '',
-		colorArray : ''
+    categoryArray : '',
+    colorArray : ''
       }
     } 
 
 async getCategoryKey(key) {
     try {
       const value = await AsyncStorage.getItem(key);
-	  if (value != null)
-	  this.setState({categoryArray: value});
-	  console.log(value);
-	  await AsyncStorage.setItem(key, this.state.categoryArray);
+    if (value != null)
+    this.setState({categoryArray: value});
+    console.log(value);
+    await AsyncStorage.setItem(key, this.state.categoryArray);
     } catch (error) {
       console.log("Error retrieving data" + error);
     }
@@ -39,10 +75,10 @@ async getCategoryKey(key) {
 async getColorKey(key) {
     try {
       const value = await AsyncStorage.getItem(key);
-	  if (value != null)
-	  this.setState({colorArray: value});
-	  console.log(value);
-	  await AsyncStorage.setItem(key, this.state.colorArray);
+    if (value != null)
+    this.setState({colorArray: value});
+    console.log(value);
+    await AsyncStorage.setItem(key, this.state.colorArray);
     } catch (error) {
       console.log("Error retrieving data" + error);
     }
@@ -55,43 +91,21 @@ async saveKey(key) {
       console.log("Error saving data" + error);
     }
   };
-
-componentWillMount (){
-	this.getCategoryKey('PreferCategory');
-	this.getColorKey('PreferColor');
-
-	firebase.database().ref('items').once('value', snapshot =>{
-	 var items = [];
-     snapshot.forEach((child) => {
-       items.push({
-          brand: child.val().brand,
-          name: child.val().name,
-          Price: child.val().Price,
-		  ID : child.val().ID,
-		  category : child.val().category,
-		  color : child.val().color,
-       });
-    });
-	this.setState({
-	dataSource : items
- });
- });
- };
- 
+    
 renderItem = ({item}) => {
       return(
         <View style={styles.menuContainer}>
             <Items itemImage={
-			require('./screens/image/shirt.jpg')} 
-			navigation={this.props.navigation} 
-			itemID={item.ID}
-			category={item.category}
-			Price ={item.Price}
-			color = {item.color}
+      require('./screens/image/shirt.jpg')} 
+      navigation={this.props.navigation} 
+      itemID={item.ID}
+      category={item.category}
+      Price ={item.Price}
+      color = {item.color}
        brand = {item.brand}
       name = {item.name}
       Photo1 = {item.Photo1}
-			>
+      >
              <Text style  = {{fontSize: 16, color: 'black'}}>
                 {item.brand}
               </Text>
@@ -103,17 +117,42 @@ renderItem = ({item}) => {
               </Text>
             </Items>
         </View>
-		
+    
         
       )
     }
+
+componentWillMount (){
+  this.getCategoryKey('PreferCategory');
+  this.getColorKey('PreferColor');
+
+  firebase.database().ref('items').once('value', snapshot =>{
+   var items = [];
+     snapshot.forEach((child) => {
+       items.push({
+          brand: child.val().brand,
+          name: child.val().name,
+          Price: child.val().Price,
+      ID : child.val().ID,
+      category : child.val().category,
+      color : child.val().color,
+       Status : child.val().Status,
+       });
+    });
+  this.setState({
+  dataSource : items
+ });
+ });
+ };
+
+
 
  render() {
        const {navigate} = this.props.navigation;
     return (
     <View style={styles.container}>     
         <FlatList
-           numColumns={2}
+            numColumns={2}
            data = {this.state.dataSource.filter(items => (items.category == "Muscle Fit"))}
             renderItem = {this.renderItem}
           />
@@ -148,3 +187,5 @@ const styles = StyleSheet.create({
 
 
 });
+ 
+

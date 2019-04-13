@@ -9,21 +9,27 @@ import * as firebase from 'firebase';
 import CustomMenu from './components/normal-custommenu';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 
-export default class RegularFit extends React.Component {
+
+export default class normaltopseller extends React.Component {
     static navigationOptions = ({navigation}) => {
       return{
-      title: navigation.getParam('Title', 'Normal Fit'),
+      title: 'Normal Fit       ',
+      //title: navigation.getParam('Title', 'Normal Fit'),
       headerRight: (
        <CustomMenu
-          menutext="All"
+          //Menu Text
+          menutext="Top Seller"
+          //Menu View Style
           menustyle={{
             marginRight: 16,
             flexDirection: 'row',
             justifyContent: 'flex-end',
           }}
+          //Menu Text Style
           textStyle={{
             color: 'white',
           }}
+          //Click functions for the menu items
           option1Click={() => {
             navigation.navigate('Regular');
           }}
@@ -34,6 +40,7 @@ export default class RegularFit extends React.Component {
             navigation.navigate('normalfeatured');
           }}
           option4Click={() => {
+            //alert('Option 4');
             navigation.navigate('normallatest');
           }}
            option5Click={() => {
@@ -46,8 +53,7 @@ export default class RegularFit extends React.Component {
             navigation.navigate('normal200above');
           }}
         />),
-     };
-
+};
   };
 
 constructor (){
@@ -102,9 +108,6 @@ renderItem = ({item}) => {
 			category={item.category}
 			Price ={item.Price}
 			color = {item.color}
-       brand = {item.brand}
-      name = {item.name}
-      Photo1 = {item.Photo1}
 			>
              <Text style  = {{fontSize: 16, color: 'black'}}>
                 {item.brand}
@@ -153,7 +156,7 @@ componentWillMount (){
     <View style={styles.container}>     
         <FlatList
             numColumns={2}
-           data = {this.state.dataSource.filter(items => (items.category == "Regular Fit"))}
+           data = {this.state.dataSource.filter(items => ((items.category == "Regular Fit") && (items.Status == "Top Seller")))}
             renderItem = {this.renderItem}
           />
     </View>

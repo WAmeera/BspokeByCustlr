@@ -9,45 +9,49 @@ import * as firebase from 'firebase';
 import CustomMenu from './components/normal-custommenu';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 
-export default class RegularFit extends React.Component {
+export default class muscle0to100 extends React.Component {
     static navigationOptions = ({navigation}) => {
-      return{
-      title: navigation.getParam('Title', 'Normal Fit'),
+      return {
+      title: navigation.getParam('Title', 'Muscle Fit'),
       headerRight: (
        <CustomMenu
-          menutext="All"
+          //Menu Text
+          menutext="RM0-RM100"
+          //Menu View Style
           menustyle={{
             marginRight: 16,
             flexDirection: 'row',
             justifyContent: 'flex-end',
           }}
+          //Menu Text Style
           textStyle={{
             color: 'white',
           }}
+          //Click functions for the menu items
           option1Click={() => {
-            navigation.navigate('Regular');
+            navigation.navigate('Muscle');
           }}
           option2Click={() => {
-            navigation.navigate('normaltopseller');
+            navigation.navigate('muscletopseller');
           }}
           option3Click={() => {
-            navigation.navigate('normalfeatured');
+            navigation.navigate('musclefeatured');
           }}
           option4Click={() => {
-            navigation.navigate('normallatest');
+            //alert('Option 4');
+            navigation.navigate('musclelatest');
           }}
            option5Click={() => {
-            navigation.navigate('normal0to100');
+            navigation.navigate('muscle0to100');
           }}
            option6Click={() => {
-            navigation.navigate('normal100to200');
+            navigation.navigate('muscle100to200');
           }}
            option7Click={() => {
-            navigation.navigate('normal200above');
+            navigation.navigate('muscle200above');
           }}
         />),
-     };
-
+    };
   };
 
 constructor (){
@@ -102,9 +106,6 @@ renderItem = ({item}) => {
 			category={item.category}
 			Price ={item.Price}
 			color = {item.color}
-       brand = {item.brand}
-      name = {item.name}
-      Photo1 = {item.Photo1}
 			>
              <Text style  = {{fontSize: 16, color: 'black'}}>
                 {item.brand}
@@ -136,7 +137,6 @@ componentWillMount (){
 		  ID : child.val().ID,
 		  category : child.val().category,
 		  color : child.val().color,
-       Status : child.val().Status,
        });
     });
 	this.setState({
@@ -153,7 +153,7 @@ componentWillMount (){
     <View style={styles.container}>     
         <FlatList
             numColumns={2}
-           data = {this.state.dataSource.filter(items => (items.category == "Regular Fit"))}
+           data = {this.state.dataSource.filter(items => ((items.category == "Muscle Fit") && (items.Price <= 100)))}
             renderItem = {this.renderItem}
           />
     </View>

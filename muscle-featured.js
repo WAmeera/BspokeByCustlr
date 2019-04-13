@@ -9,45 +9,49 @@ import * as firebase from 'firebase';
 import CustomMenu from './components/normal-custommenu';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 
-export default class RegularFit extends React.Component {
+
+export default class musclefeatured extends React.Component {
     static navigationOptions = ({navigation}) => {
-      return{
-      title: navigation.getParam('Title', 'Normal Fit'),
+     return{
+     title: 'Muscle Fit       ',
+     //title: navigation.getParam('Title', 'Normal Fit'),
       headerRight: (
        <CustomMenu
-          menutext="All"
+          menutext="Featured"
           menustyle={{
             marginRight: 16,
             flexDirection: 'row',
             justifyContent: 'flex-end',
           }}
+          //Menu Text Style
           textStyle={{
             color: 'white',
           }}
+          //Click functions for the menu items
           option1Click={() => {
-            navigation.navigate('Regular');
+            navigation.navigate('Muscle');
           }}
           option2Click={() => {
-            navigation.navigate('normaltopseller');
+            navigation.navigate('muscletopseller');
           }}
           option3Click={() => {
-            navigation.navigate('normalfeatured');
+            navigation.navigate('musclefeatured');
           }}
           option4Click={() => {
-            navigation.navigate('normallatest');
+            //alert('Option 4');
+            navigation.navigate('musclelatest');
           }}
            option5Click={() => {
-            navigation.navigate('normal0to100');
+            navigation.navigate('muscle0to100');
           }}
            option6Click={() => {
-            navigation.navigate('normal100to200');
+            navigation.navigate('muscle100to200');
           }}
            option7Click={() => {
-            navigation.navigate('normal200above');
+            navigation.navigate('muscle200above');
           }}
         />),
-     };
-
+      };
   };
 
 constructor (){
@@ -55,18 +59,18 @@ constructor (){
       this.state = {
         dataSource : [],
         isLoading: true,
-		categoryArray : '',
-		colorArray : ''
+    categoryArray : '',
+    colorArray : ''
       }
     } 
 
 async getCategoryKey(key) {
     try {
       const value = await AsyncStorage.getItem(key);
-	  if (value != null)
-	  this.setState({categoryArray: value});
-	  console.log(value);
-	  await AsyncStorage.setItem(key, this.state.categoryArray);
+    if (value != null)
+    this.setState({categoryArray: value});
+    console.log(value);
+    await AsyncStorage.setItem(key, this.state.categoryArray);
     } catch (error) {
       console.log("Error retrieving data" + error);
     }
@@ -75,10 +79,10 @@ async getCategoryKey(key) {
 async getColorKey(key) {
     try {
       const value = await AsyncStorage.getItem(key);
-	  if (value != null)
-	  this.setState({colorArray: value});
-	  console.log(value);
-	  await AsyncStorage.setItem(key, this.state.colorArray);
+    if (value != null)
+    this.setState({colorArray: value});
+    console.log(value);
+    await AsyncStorage.setItem(key, this.state.colorArray);
     } catch (error) {
       console.log("Error retrieving data" + error);
     }
@@ -96,16 +100,13 @@ renderItem = ({item}) => {
       return(
         <View style={styles.menuContainer}>
             <Items itemImage={
-			require('./screens/image/shirt.jpg')} 
-			navigation={this.props.navigation} 
-			itemID={item.ID}
-			category={item.category}
-			Price ={item.Price}
-			color = {item.color}
-       brand = {item.brand}
-      name = {item.name}
-      Photo1 = {item.Photo1}
-			>
+      require('./screens/image/shirt.jpg')} 
+      navigation={this.props.navigation} 
+      itemID={item.ID}
+      category={item.category}
+      Price ={item.Price}
+      color = {item.color}
+      >
              <Text style  = {{fontSize: 16, color: 'black'}}>
                 {item.brand}
               </Text>
@@ -117,30 +118,30 @@ renderItem = ({item}) => {
               </Text>
             </Items>
         </View>
-		
+    
         
       )
     }
 
 componentWillMount (){
-	this.getCategoryKey('PreferCategory');
-	this.getColorKey('PreferColor');
+  this.getCategoryKey('PreferCategory');
+  this.getColorKey('PreferColor');
 
-	firebase.database().ref('items').once('value', snapshot =>{
-	 var items = [];
+  firebase.database().ref('items').once('value', snapshot =>{
+   var items = [];
      snapshot.forEach((child) => {
        items.push({
           brand: child.val().brand,
           name: child.val().name,
           Price: child.val().Price,
-		  ID : child.val().ID,
-		  category : child.val().category,
-		  color : child.val().color,
-       Status : child.val().Status,
+      ID : child.val().ID,
+      category : child.val().category,
+      color : child.val().color,
+      Status : child.val().Status,
        });
     });
-	this.setState({
-	dataSource : items
+  this.setState({
+  dataSource : items
  });
  });
  };
@@ -153,7 +154,7 @@ componentWillMount (){
     <View style={styles.container}>     
         <FlatList
             numColumns={2}
-           data = {this.state.dataSource.filter(items => (items.category == "Regular Fit"))}
+           data = {this.state.dataSource.filter(items => ((items.category == "Muscle Fit") && (items.Status == "Featured")))}
             renderItem = {this.renderItem}
           />
     </View>

@@ -142,7 +142,9 @@ this.props.navigation.navigate('Recommendation');
               ? this.state.dataSource.filter(items => ((items.category == "Slim Fit") && (items.Price <= 100)))
               : this.state.value == "RM100 - RM200"
               ? this.state.dataSource.filter(items => ((items.category == "Slim Fit") && ((items.Price >= 100) && (items.Price <= 200))))
-              : this.state.dataSource.filter(items => ((items.category == "Slim Fit") && (items.Price >= 200)))
+              : this.state.value == "Above RM200"
+              ? this.state.dataSource.filter(items => ((items.category == "Slim Fit") && (items.Price >= 200)))
+              : this.state.dataSource.filter(items => (items.category == "Slim Fit"))
           }
           renderItem = {this.renderItem}
           />

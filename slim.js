@@ -8,6 +8,7 @@ import {AppRegistr,FlatList,ListView, ActivityIndicator,Divider, StatusBar} from
 import * as firebase from 'firebase';
 import CustomMenu from './components/normal-custommenu';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
+import DropdownMenu from 'react-native-dropdown-menu';
 
 export default class SlimFit extends React.Component {
    /* state = {
@@ -16,7 +17,7 @@ export default class SlimFit extends React.Component {
     }*/
 
     static navigationOptions = ({navigation}) => {
-      global.rendervalue = 1;
+      /*global.rendervalue = 1;
       return{
       title: navigation.getParam('Title', 'Slim Fit'),
       headerRight: (
@@ -71,16 +72,40 @@ export default class SlimFit extends React.Component {
             //navigation.navigate('slim200above');
              rendervalue = 7;
              menutext = "Above RM200"
-             //this.handleClick.bind(this);
-             this.setState();
+             this.handleClick.bind(this);
+             
           }}
         />),
      };
+     title: navigation.getParam('Title', 'Slim Fit'),
+     /*var data = ["All", "Top Seller","Featured", "Latest", "RM0 - RM100", "RM100 - RM200","Above RM200"];
+      headerRight: (
+        <DropdownMenu
+          style={{flex: 1}}
+          bgColor={'white'}
+          tintColor={'#666666'}
+          activityTintColor={'green'}
+          // arrowImg={}      
+          // checkImage={}   
+          // optionTextStyle={{color: '#333333'}}
+          // titleStyle={{color: '#333333'}} 
+          // maxHeight={300} 
+          handler={(selection, row) => this.setState({text: data[selection][row]})}
+          data={data}
+        >
+        </DropdownMenu>*/
+
+     // ), */
+     return{
+      title: navigation.getParam('Title', 'Slim Fit'),
+    };
+
   };
 
-   handleClick() {
-    this.render();
-  }
+   /*static handleClick() {
+    //this.render();
+    this.componentWillMount();
+  }*/
 
 constructor (){
       super()
@@ -177,77 +202,42 @@ componentWillMount (){
 
 
   render() {
-      const {navigate} = this.props.navigation;
-      if (rendervalue == 1){
-        return (
-          <View style={styles.container}>     
-            <FlatList
-              numColumns={2}
-              data = {this.state.dataSource.filter(items => (items.category == "Slim Fit"))}
-              renderItem = {this.renderItem}
-            />
-          </View>
-        );}
-      else if (rendervalue == 2){
-        return (
-          <View style={styles.container}>     
-            <FlatList
-              numColumns={2}
-              data = {this.state.dataSource.filter(items => ((items.category == "Slim Fit") && (items.Status == "Top Seller")))}
-              renderItem = {this.renderItem}
-            />
-          </View>
-        );}
-      else if (rendervalue == 3){
-          return (
-          <View style={styles.container}>     
+       const {navigate} = this.props.navigation;
+       var data = [["All", "Top Seller","Featured", "Latest", "RM0 - RM100", "RM100 - RM200","Above RM200"]];
+       return (
+      <View style={{flex: 1}}>
+        <DropdownMenu
+          style={{flex: 1}}
+          bgColor={'grey'}
+          tintColor={'black'}
+          activityTintColor={'green'}
+          handler={(selection, row) => this.setState({value :data[selection][row]})}
+          data={data}    
+        >
+        <View style={{flex: 1}}>
           <FlatList
             numColumns={2}
-            data = {this.state.dataSource.filter(items => ((items.category == "Slim Fit") && (items.Status == "Featured")))}
-            renderItem = {this.renderItem}
-          />
-          </View>
-        );}
-      else if (rendervalue == 4){
-        return (
-        <View style={styles.container}>     
-        <FlatList
-            numColumns={2}
-            data = {this.state.dataSource.filter(items => ((items.category == "Slim Fit") && (items.Status == "New Arrival")))}
-            renderItem = {this.renderItem}
-        />
-        </View>
-      );}
-      else if (rendervalue == 5){
-        return (
-          <View style={styles.container}>     
-          <FlatList
-            numColumns={2}
-            data = {this.state.dataSource.filter(items => ((items.category == "Slim Fit") && (items.Price <= 100)))}
-            renderItem = {this.renderItem}
-          />
-          </View>
-      );}
-      else if (rendervalue == 6){
-        return (
-          <View style={styles.container}>     
-          <FlatList
-            numColumns={2}
-            data = {this.state.dataSource.filter(items => ((items.category == "Slim Fit") && ((items.Price >= 100) && (items.Price <= 200))))}
-            renderItem = {this.renderItem}
+            data = {
+              this.state.value == "All"
+              ? this.state.dataSource.filter(items => (items.category == "Slim Fit"))
+              : this.state.value == "Top Seller"
+              ? this.state.dataSource.filter(items => (items.category == "Slim Fit") && (items.Status == "Top Seller"))
+              : this.state.value == "Featured"
+              ? this.state.dataSource.filter(items => ((items.category == "Slim Fit") && (items.Status == "Featured")))
+              : this.state.value == "Latest"
+              ? this.state.dataSource.filter(items => ((items.category == "Slim Fit") && (items.Status == "New Arrival")))
+              : this.state.value == "RM0 - RM100"
+              ? this.state.dataSource.filter(items => ((items.category == "Slim Fit") && (items.Price <= 100)))
+              : this.state.value == "RM100 - RM200"
+              ? this.state.dataSource.filter(items => ((items.category == "Slim Fit") && ((items.Price >= 100) && (items.Price <= 200))))
+              : this.state.dataSource.filter(items => ((items.category == "Slim Fit") && (items.Price >= 200)))
+          }
+          renderItem = {this.renderItem}
           />
         </View>
-    );}
-    else if (rendervalue == 7){
-      return (
-        <View style={styles.container}>     
-        <FlatList
-            numColumns={2}
-           data = {this.state.dataSource.filter(items => ((items.category == "Slim Fit") && (items.Price >= 200)))}
-            renderItem = {this.renderItem}
-          />
-    </View>
-    );}
+        </DropdownMenu>    
+      </View>
+    );
   }
 }            
 

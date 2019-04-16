@@ -39,6 +39,7 @@ export default class AddressModal extends React.Component {
       category : child.val().category,
       color : child.val().color,
       Status : child.val().Status,
+      Photo1: child.val().Photo1,
       Materials : child.val().Materials,
       Details: child.val().Details,
       Price: child.val().Price
@@ -108,8 +109,7 @@ export default class AddressModal extends React.Component {
 renderItem = ({item}) => {
       return(
         <View style={styles.menuContainer}>
-            <Items itemImage={
-      require('../screens/image/shirt.jpg')} 
+            <Items itemImage={{uri:item.Photo1}} 
       navigation={this.props.navigation} 
       itemID={item.ID}
       category={item.category}

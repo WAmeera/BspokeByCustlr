@@ -38,6 +38,7 @@ export default class TextSearch extends React.Component {
           name: child.val().name,
       category : child.val().category,
       color : child.val().color,
+       Photo1: child.val().Photo1,
       Status : child.val().Status,
       Materials : child.val().Materials,
       Details: child.val().Details,
@@ -110,8 +111,7 @@ export default class TextSearch extends React.Component {
 renderItem = ({item}) => {
       return(
         <View style={styles.menuContainer}>
-            <Items itemImage={
-      require('../screens/image/shirt.jpg')} 
+         <Items itemImage={{uri:item.Photo1}} 
       navigation={this.props.navigation} 
       itemID={item.ID}
       category={item.category}

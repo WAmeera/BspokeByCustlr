@@ -52,6 +52,21 @@ export default class TextSearch extends React.Component {
  });
   }
 
+  checkAvailability (data){
+  if (data.length != 0)
+  return (
+   <FlatList
+           numColumns={2}
+           data = {data}
+            renderItem = {this.renderItem}
+          />
+  )
+else
+return (
+	<Text>No item available </Text>
+)
+  }
+
   renderContent() {
  
   const {word,dataSource} = this.state;
@@ -87,11 +102,7 @@ export default class TextSearch extends React.Component {
     </Card2>
   <View style={styles.container}> 
 
-        <FlatList
-           numColumns={2}
-           data = {dataFilter}
-            renderItem = {this.renderItem}
-          />
+       {this.checkAvailability(dataFilter)}
     
     </View>
     

@@ -9,17 +9,23 @@ import {DrawerActions} from 'react-navigation-drawer';
 
 export default class HomeScreen extends React.Component {
 
-  static navigationOptions = {
-          title: 'Home     ',
-          tabBarIcon:({tintColor}) =>(
+  static navigationOptions =({navigation}) =>({
+          title: 'Home',
+          /*tabBarIcon:({tintColor}) =>(
          <View style={{paddingRight:5}}>
 
-          <Image source={require('./image/homeicon.png')}
-            style={{width:22,height:22,tintColor:'white'}}>
-            </Image>
+          
         </View>
-        )
-  };
+        )*/
+		 
+		headerRight: <TouchableOpacity onPress={()=> navigation.navigate('Login') }>
+		<Image source={require('./image/homeicon.png')}
+            style={{width:22,height:22,tintColor:'white',marginRight : 20}}>
+            </Image></TouchableOpacity>
+  });
+
+  
+
   render() {
      const {navigate} = this.props.navigation;
 

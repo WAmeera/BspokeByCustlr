@@ -80,7 +80,7 @@ export default class Login extends Component {
 	    const Shipment = 'CURRENTLY IN WAREHOUSE';
 	  const resetAction = StackActions.reset({
   index: 0,
-  actions: [NavigationActions.navigate({ routeName: 'ShoppingBag' })],
+  actions: [NavigationActions.navigate({ routeName: 'Dashboard' })],
 });
    
 

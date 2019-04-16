@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions,Image,ScrollView,View, Text, Button, StyleSheet } from 'react-native';
+import { TouchableOpacity, Dimensions,Image,ScrollView,View, Text, Button, StyleSheet } from 'react-native';
 import {createBottomTabNavigator,createAppContainer, createStackNavigator, StackActions, NavigationActions,createDrawerNavigator, createSwitchNavigator } from 'react-navigation'; // Version can be specified in package.json
 import Items from './components/items';
 import HomeScreen from './screens/home';
@@ -70,7 +70,6 @@ var config = {
   });*/
 
 
-
 const DrawerConfig = {
 	contentComponent:({navigation})=>{
 		return(<MenuDrawer navigation ={navigation}/>)
@@ -107,8 +106,7 @@ const RegisterNavigator = createSwitchNavigator({
 	},
   },);
 
-
-
+ 
 const DashboardTabNavigator = createBottomTabNavigator({
   HomeScreen,
   ShoppingBag,  
@@ -128,15 +126,22 @@ const DashboardTabNavigator = createBottomTabNavigator({
           paddingLeft:2
         },
     },
+	headerRight: <TouchableOpacity onPress={()=> navigation.navigate('Login') }>
+		<Image source={require('./image/homeicon.png')}
+            style={{width:22,height:22,tintColor:'white',marginRight : 20}}>
+            </Image></TouchableOpacity>
+
 }
 
 )
 
 
+const navigateAction = NavigationActions.navigate({
+  routeName: 'Login' });
+
+
 const AppNavigator = createStackNavigator({   //control everything
-DashboardTabNavigator:{
-	screen: DashboardTabNavigator,
-},
+
 statusModal :{
 	screen: statusModal,
 },
@@ -160,6 +165,12 @@ Recommendation:{
   },
   Dashboard:{
   	screen: DashboardTabNavigator,
+	navigationOptions: ({ navigation }) => ({
+	  headerRight: <TouchableOpacity onPress={()=> navigation.navigate('Login') }>
+		<Image source={require('./image/homeicon.png')}
+            style={{width:22,height:22,tintColor:'white',marginRight : 20}}>
+            </Image></TouchableOpacity>
+    }),
   },
     Home:{
     screen: HomeScreen,
@@ -230,6 +241,7 @@ Recommendation:{
   
 }, 
 {
+
     initialRouteName: 'Login',
     defaultNavigationOptions: {
       headerStyle: {
@@ -239,6 +251,8 @@ Recommendation:{
       headerTitleStyle: {
         fontWeight: 'bold',
       },
+
+	  
     },
 }
 );

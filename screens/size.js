@@ -37,7 +37,7 @@ export default class Size extends React.Component {
     const sleeve = 0;
 	const resetAction = StackActions.reset({
   index: 0,
-  actions: [NavigationActions.navigate({ routeName: 'DashboardTabNavigator' })],
+  actions: [NavigationActions.navigate({ routeName: 'Dashboard' })],
 });
    
    

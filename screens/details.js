@@ -20,10 +20,12 @@ export default class DetailsScreen extends React.Component{
       const brand = this.props.navigation.getParam('brand','x');
       const name = this.props.navigation.getParam('name','x');
       const Photo1 = this.props.navigation.getParam('Photo1','x');
+      const Photo2 = this.props.navigation.getParam('Photo2','x');
+      const Photo3 = this.props.navigation.getParam('Photo3','x');
 	   const customImg = [
        Photo1,
-      "https://firebasestorage.googleapis.com/v0/b/lotapp-9e84d.appspot.com/o/fan.jpg?alt=media&token=b419d507-9de8-4c4c-97e3-6b4eb2202e68",
-      "https://firebasestorage.googleapis.com/v0/b/lotapp-9e84d.appspot.com/o/stone.jpg?alt=media&token=e9d41537-7f26-4bfd-86eb-c2ef6fc58a9c"
+       Photo2,
+       Photo3
       ];
     
      senditem = (itemID,Price,category,brand,name,Photo1) => {
@@ -33,7 +35,9 @@ export default class DetailsScreen extends React.Component{
 	  category : category,
 	  brand : brand,
 	  name : name,
-	  Photo1 : Photo1
+	  Photo1 : Photo1,
+    Photo2 : Photo2,
+    Photo3 : Photo3
 	  });}
 
      return (
@@ -46,8 +50,9 @@ export default class DetailsScreen extends React.Component{
                           width={400}          
                         />
                       <View style={styles.infoContainer}>
-                        <Text style={styles.info}> RM {Price} {"\n"}
-                              {category} 
+                        <Text style={styles.info}> 
+                        RM {Price.toFixed(2)} 
+                        {"\n"}{category} 
 
                         </Text>
                         <TouchableOpacity activeOpacity={0.8} onPress={() => {senditem(itemID,Price,category,brand,name,Photo1)}}>        

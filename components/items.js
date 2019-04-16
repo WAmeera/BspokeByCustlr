@@ -18,7 +18,9 @@ export default class Items extends React.Component {
 					color :this.props.color,
 					brand : this.props.brand,
 					name : this.props.name,
-					Photo1: this.props.Photo1
+					Photo1: this.props.Photo1,
+                    Photo2: this.props.Photo2,
+                    Photo3: this.props.Photo3
 					}
 					)} >
                         <Image source={this.props.itemImage}  style={styles.image}/>         

@@ -70,6 +70,8 @@ renderItem = ({item}) => {
        brand = {item.brand}
       name = {item.name}
       Photo1 = {item.Photo1}
+      Photo2 = {item.Photo2}
+      Photo3 = {item.Photo3}
       Status = {item.Status}
 			>
              <Text style  = {{fontSize: 16, color: 'black'}}>
@@ -103,6 +105,8 @@ componentWillMount (){
 		  category : child.val().category,
 		  color : child.val().color,
 		  Photo1: child.val().Photo1,
+      Photo2 : child.val().Photo2,
+      Photo3 : child.val().Photo3,
       Status : child.val().Status,
        });
     });

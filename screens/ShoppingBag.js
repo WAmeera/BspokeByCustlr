@@ -58,6 +58,7 @@ export default class ShoppingBag extends React.Component {
         itemCount += 1; 
         totalPrice += child.val().Price; 
     });
+   totalPrice = totalPrice.toFixed(2);
   this.setState({
   dataSource : ShoppingBag
  });
@@ -74,7 +75,7 @@ export default class ShoppingBag extends React.Component {
       return(
         <View style ={{flex: 1, flexDirection: 'row', marginBottom: 3}}>
          <Image  style = {{width: 140, height: 190, margin: 5}}
-            source = {{url : item.Photo1}} />
+            source = {{uri : item.Photo1}} />
             <View style ={{flex:1, justifyContent: 'center', marginLeft :5}}>
               <Text style  = {{fontSize: 20, color: 'black', marginBottom: 2, marginTop : 0}}>
                 {item.brand}
@@ -83,7 +84,7 @@ export default class ShoppingBag extends React.Component {
                 {item.name}
               </Text>
               <Text style  = {{fontSize: 14, color: 'red', marginBottom: 15}}>
-                RM {item.Price}
+                RM {item.Price.toFixed(2)}
               </Text>
               <Text style  = {{fontSize: 14, color: 'black'}}>
                 Size : {item.Size} 

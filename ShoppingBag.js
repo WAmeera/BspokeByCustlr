@@ -143,17 +143,32 @@ if (nextProps.isFocused) {
 		alert ("Purchase something before you checkout!");
 	}
 
-    render () {
-      return (
-        <View style = {{flex: 1, alignContent: 'center'}}>
-        <ScrollView>
-          <FlatList
+	checkCart (){
+	if (this.state.dataSource!=[])
+	{
+		return (
+		<ScrollView>
+		<FlatList
             data = {this.state.dataSource}
             renderItem = {this.renderItem}
             /*keyExtractor = {name,index} => index]*/
             ItemSeperatorComponent = {this.renderSeperator}
           />
-          </ScrollView>
+		  </ScrollView>
+		)
+	}
+	else
+	{
+		return (<Image source={require('../empty_shopping_bag.png')}  style={styles.img2}/>)
+	}
+	}
+
+    render () {
+      return (
+        <View style = {{flex: 1, alignContent: 'center'}}>
+        
+          {this.checkCart}
+          
           <View style={{ backgroundColor: '#AAAAAA'}}>
             <Text></Text>
             <Text style  = {{fontSize: 14, color: '#FFFF'}}>  Sub-total ({itemCount} item(s)) : RM {totalPrice} </Text> 
@@ -189,7 +204,11 @@ const styles = StyleSheet.create({
 
     },
   
+  img2:{
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height*0.5,
 
+  }
 
 });
 

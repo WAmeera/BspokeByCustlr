@@ -113,9 +113,7 @@ const DashboardTabNavigator = createBottomTabNavigator({
   HomeScreen,
   ShoppingBag,  
   Recommendation,
-  Search:{
-    screen:TextSearch
-  },
+  TextSearch,
 },
 { 
     tabBarOptions: {

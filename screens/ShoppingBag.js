@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Dimensions,TouchableOpacity,Styles,AppRegistry,StyleSheet,Text,View,Button,FlatList,Image,ActivityIndicator,Divider, StatusBar} from 'react-native';
+import {ScrollView,Dimensions,TouchableOpacity,Styles,AppRegistry,StyleSheet,Text,View,Button,FlatList,Image,ActivityIndicator,Divider, StatusBar} from 'react-native';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import * as firebase from 'firebase';
@@ -64,6 +64,7 @@ export default class ShoppingBag extends React.Component {
  });
  })};
 
+
   //function renderItem - will show the informations fetched from the database to the user-end (the shopping bag list)
   //function renderSeperator - will show a line, in this class it is used to seperate each items on the list
     renderItem = ({item}) => {
@@ -127,15 +128,31 @@ export default class ShoppingBag extends React.Component {
 	this.props.navigation.navigate('Payment1');
 	}
 
-    render () {
-      return (
-        <View style = {{flex: 1, alignContent: 'center'}}>
-          <FlatList
+	checkCart (){
+	if (this.state.dataSource.length!= 0)
+	{
+		return (
+		<ScrollView>
+		<FlatList
             data = {this.state.dataSource}
             renderItem = {this.renderItem}
             /*keyExtractor = {name,index} => index]*/
             ItemSeperatorComponent = {this.renderSeperator}
           />
+		  </ScrollView>
+		)
+	}
+	else
+	{
+		return (
+		<Image source={require('../empty_shopping_bag.png')} style={styles.img}/>)
+	}
+	}
+
+    render () {
+      return (
+        <View style = {{flex: 1, alignContent: 'center'}}>
+		{this.checkCart()}       
           <View style={{ backgroundColor: '#AAAAAA'}}>
             <Text></Text>
             <Text style  = {{fontSize: 14, color: '#FFFF'}}>  Sub-total ({itemCount} item(s)) : RM {totalPrice} </Text> 
@@ -166,8 +183,8 @@ export default class ShoppingBag extends React.Component {
 const styles = StyleSheet.create({
 
    img:{
-    width: Dimensions.get('window').width*0.66,
-      height:hp('10%'),
+    width: Dimensions.get('window').width*1,
+      height:Dimensions.get('window').height*0.5,
 
     },
   

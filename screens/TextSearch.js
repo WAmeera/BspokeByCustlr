@@ -6,7 +6,7 @@ import Items from '../components/items';
 import * as firebase from 'firebase';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-export default class AddressModal extends React.Component {
+export default class TextSearch extends React.Component {
 
 
   static navigationOptions = {
@@ -47,6 +47,7 @@ export default class AddressModal extends React.Component {
   this.setState({
   dataSource : items
  });
+
  
  });
   }
@@ -54,6 +55,7 @@ export default class AddressModal extends React.Component {
   renderContent() {
  
   const {word,dataSource} = this.state;
+  console.log (dataSource);
   var dataFilter=[];
   for (i=0;i<this.state.dataSource.length;i++)
   {

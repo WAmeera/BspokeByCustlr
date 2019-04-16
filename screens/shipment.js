@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image,ScrollView,View, Text, Button, StyleSheet, AsyncStorage, TouchableOpacity} from 'react-native';
+import { Dimensions, Image,ScrollView,View, Text, Button, StyleSheet, AsyncStorage, TouchableOpacity} from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import Items from '../components/items';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -77,17 +77,29 @@ renderItem = ({item}) => {
       )
     }
 	
- render() {
-       const {navigate} = this.props.navigation;
-    return (
-    <View style={styles.container}> 
+renderContent(){
+	if (this.state.dataSource.length!= 0)
+		return (
+		 
         <FlatList
            numColumns={2}
            data = {this.state.dataSource}
             renderItem = {this.renderItem}
           />
 		
-    </View>
+    
+		)
+		else
+		return (<Image source={require('../empty_shopping_bag.png')}  style={styles.img}/>)
+		
+}
+
+ render() {
+    const {navigate} = this.props.navigation;
+    return (
+	<View style={styles.container}>
+    {this.renderContent()}
+	</View>
     );
   }
 
@@ -102,7 +114,11 @@ const styles = StyleSheet.create({
   },
 
 
+  img:{
+    width: Dimensions.get('window').width*1,
+    height: Dimensions.get('window').height*0.75,
 
+  },
 
   menuContainer:{
     flexDirection:'row',

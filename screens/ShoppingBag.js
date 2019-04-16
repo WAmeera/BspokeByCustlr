@@ -73,7 +73,7 @@ export default class ShoppingBag extends React.Component {
       return(
         <View style ={{flex: 1, flexDirection: 'row', marginBottom: 3}}>
          <Image  style = {{width: 140, height: 190, margin: 5}}
-            source = {{url : item.Photo1}} />
+            source = {{uri : item.Photo1}} />
             <View style ={{flex:1, justifyContent: 'center', marginLeft :5}}>
               <Text style  = {{fontSize: 20, color: 'black', marginBottom: 2, marginTop : 0}}>
                 {item.brand}

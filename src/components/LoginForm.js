@@ -49,24 +49,15 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 
     return (
-<View style ={{ height:100, width:360, alignItems: 'center'}}>
 
-    <View style={styles.button}>
+  <View style ={{height:Dimensions.get('window').height*0.2, width: Dimensions.get('window').width8, alignItems:'center'}}>
 
+<View style={styles.button}>
 
      <TouchableOpacity activeOpacity={1} onPress={this.handleLogin} >
        
         <Image source={require('./login.png')}  style={styles.btn}/>
       </TouchableOpacity>
-
-
-
-
-
-
-
-
-
 
    </View>
 
@@ -81,7 +72,10 @@ firebase.auth().onAuthStateChanged((user) => {
 
      </View>
 
-	</View>
+
+
+
+  </View>
     );
   }
 

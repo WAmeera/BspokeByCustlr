@@ -1,6 +1,6 @@
 import React from 'react';
-import { Image,ScrollView,View, Text, Button, StyleSheet } from 'react-native';
-import { createAppContainer, createStackNavigator, StackActions, NavigationActions,createDrawerNavigator, createSwitchNavigator } from 'react-navigation'; // Version can be specified in package.json
+import { TouchableOpacity, Dimensions,Image,ScrollView,View, Text, Button, StyleSheet } from 'react-native';
+import {createBottomTabNavigator,createAppContainer, createStackNavigator, StackActions, NavigationActions,createDrawerNavigator, createSwitchNavigator } from 'react-navigation'; // Version can be specified in package.json
 import Items from './components/items';
 import HomeScreen from './screens/home';
 import DetailsScreen from './screens/details';
@@ -30,7 +30,8 @@ import * as firebase from 'firebase';
 import AddressModal from './screens/AddressModal';
 import LoginForm from './src/components/LoginForm';
 import TextSearch from './screens/TextSearch';
-
+import Shipment from './screens/shipment';
+import statusModal from './screens/statusModal';
 //connect to database
 var config = {
     apiKey: "AIzaSyB5abld-pkUYqwM8SCSzzqjRO171JPsLDU",
@@ -69,31 +70,6 @@ var config = {
   });*/
 
 
-
-const DrawerConfig = {
-	contentComponent:({navigation})=>{
-		return(<MenuDrawer navigation ={navigation}/>)
-	}
-}
-const Modalstack = createStackNavigator(
-{
-	AddressModal :{
-		screen : AddressModal,
-	}
-},
-{mode : 'modal',
-});
-
-const DrawerNavigator = createDrawerNavigator(
-{
-	Home:{
-	screen:HomeScreen,},
-	AddressModal :{
-	screen : AddressModal,},
-},
-DrawerConfig,
-);
-
 const RegisterNavigator = createSwitchNavigator({  
   Register: {
     screen: Register,
@@ -101,12 +77,53 @@ const RegisterNavigator = createSwitchNavigator({
 	Login: {
 		screen:Login,
 	},
-	Modalstack: {
-    screen: Modalstack,
-	},
+	AddressModal :{
+  screen : AddressModal,},
+	
   },);
 
+ 
+const DashboardTabNavigator = createBottomTabNavigator({
+  HomeScreen,
+  ShoppingBag,  
+  Recommendation,
+  TextSearch,
+},
+{ 
+    tabBarOptions: {
+      activeTintColor: '#a54c4c',
+      inactiveTintColor: 'white',
+
+        style: {
+          backgroundColor: '#606060',
+        },
+        labelStyle: {
+          fontSize: 12,
+          paddingLeft:2
+        },
+    },
+	headerRight: <TouchableOpacity onPress={()=> navigation.navigate('Login') }>
+		<Image source={require('./image/homeicon.png')}
+            style={{width:22,height:22,tintColor:'white',marginRight : 20}}>
+            </Image></TouchableOpacity>
+
+}
+
+)
+
+
+const navigateAction = NavigationActions.navigate({
+  routeName: 'Login' });
+
+
 const AppNavigator = createStackNavigator({   //control everything
+
+statusModal :{
+	screen: statusModal,
+},
+Shipment :{
+	screen: Shipment,
+},
 TextSearch :{
 	screen: TextSearch,
 },
@@ -119,12 +136,21 @@ Recommendation:{
  RegisterNavigator: {
     screen: RegisterNavigator,
   },
-  DrawerNavigator: {
-    screen: DrawerNavigator,
+
+  Dashboard:{
+  	screen: DashboardTabNavigator,
+	navigationOptions: ({ navigation }) => ({
+	  headerRight: <TouchableOpacity onPress={()=> navigation.navigate('Login') }>
+		<Image source={require('./screens/image/userIcon.png')}
+            style={{width:22,height:22,tintColor:'white',marginRight : 20}}>
+            </Image></TouchableOpacity>
+    }),
   },
-  Home:{
-  	screen: HomeScreen,
+    Home:{
+    screen: HomeScreen,
   },
+  
+
   Details: {
     screen: DetailsScreen,
   }, 
@@ -142,9 +168,6 @@ Recommendation:{
   },
   Payment3:{
     screen: Payment3,
-  },
-    Intro:{
-    screen: Intro,
   },
     Options:{
     screen: Options,
@@ -192,8 +215,36 @@ Recommendation:{
   
 }, 
 {
-    initialRouteName: 'Intro',
+
+    initialRouteName: 'Login',
     defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#000',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+
+	  
+    },
+}
+);
+
+
+
+
+const StartNavigator = createSwitchNavigator({
+Intro:{
+    screen: Intro,
+  },
+AppNavigator:{
+	screen: AppNavigator,
+},
+},
+{
+	initialRouteName : 'Intro',
+	defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#003061',
       },
@@ -210,4 +261,6 @@ Recommendation:{
 
 
 
-export default createAppContainer(AppNavigator);    //call the class
+
+
+export default createAppContainer(StartNavigator);    //call the class

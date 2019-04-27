@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {DrawerActions} from 'react-navigation-drawer';
 import {Ionicons} from '@expo/vector-icons';
 
 export default class MenuButton extends React.Component {
@@ -11,7 +10,7 @@ export default class MenuButton extends React.Component {
 				color="#000000"
 				size={32}
 				style={styles.menuIcon}
-				onPress={()=>this.props.navigation.dispatch(DrawerActions.toggleDrawer())}
+				onPress={()=>this.props.navigation.toggleDrawer()}
 				/>
 		)
 	}
@@ -22,6 +21,6 @@ const styles = StyleSheet.create({
 		zIndex:9,
 		position:'absolute',
 		top : 40,
-		right : 20,
+		left : 20,
 	} 
 })

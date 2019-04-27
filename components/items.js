@@ -1,61 +1,28 @@
 import React from 'react';
-import {TouchableOpacity,Button,Text,View, Image, StyleSheet,AsyncStorage} from 'react-native';
+import {TouchableOpacity,Button,Text,View, Image, StyleSheet,} from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-export default class Items extends React.Component{
-	state :
-	{
-		
-	}
+export default class Items extends React.Component {
 
-	async getKey(key) {
-    try {
-      const value = await AsyncStorage.getItem(key);
-    } catch (error) {
-      console.log("Error retrieving data" + error);
-    }
-  };
-
-  async saveKey(key,value) {
-    try {
-	  var valueInside = await AsyncStorage.getItem(key);
-	  if (valueInside!=null){
-	  valueInside = valueInside + "," + JSON.stringify(value);
-      await AsyncStorage.setItem(key, valueInside);
-	  }
-	  else
-	  await AsyncStorage.setItem(key, JSON.stringify(value));
-    } catch (error) {
-      console.log("Error saving data" + error);
-    }
-  };
-
-PressedtoRecordView =()=>{
-	this.saveKey('PreferCategory',this.props.category);
-	this.saveKey('PreferColor',this.props.color)
-
-
-	this.props.navigation.navigate(
-					'Details',
-					{itemID:this.props.itemID,
-					Price:this.props.Price,
-					category:this.props.category,}
-					)
-}
-
-render(){
+    render(){
         return(
             <View style = {styles.menuItem}>
-
-
-
-
                 <View style = {styles.menuItem}>
-                    <TouchableOpacity 
-					activeOpacity={1} 
-					style={styles.buttonContainer} 
-					onPress={this.PressedtoRecordView}>
+                    <TouchableOpacity activeOpacity={1} style={styles.buttonContainer} onPress={() => 
+                    this.props.navigation.navigate('Details',
+                    {
+                    itemID:this.props.itemID,
+                    category:this.props.category,
+                    Price :this.props.Price,
+                    color :this.props.color,
+                    brand : this.props.brand,
+                    name : this.props.name,
+                    Photo1: this.props.Photo1,
+                    Photo2: this.props.Photo2,
+                    Photo3: this.props.Photo3
+                    }
+                    )} >
                         <Image source={this.props.itemImage}  style={styles.image}/>         
                         {this.props.children}
                     </TouchableOpacity>
@@ -64,8 +31,7 @@ render(){
             </View>
 
         );
-		}
-    
+    }
 }
 
 
@@ -106,4 +72,3 @@ const styles = StyleSheet.create({
 
 
 });
-

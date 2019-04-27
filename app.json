@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Bespoke",
+    "name": "Bspoke",
     "slug": "bespoke",
     "privacy": "public",
     "sdkVersion": "32.0.0",
@@ -23,7 +23,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.custlr.bspoke"
+    },
+       "android": {
+      "package": "com.custlr.bspoke"
     }
+
   }
 }
